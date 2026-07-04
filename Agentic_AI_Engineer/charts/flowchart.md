@@ -2,7 +2,17 @@
 How OpenClaw handles routing, session state, channel integration, and tool execution
 
 ```mermaid
-%%{init: {'theme':'base','flowchart':{'htmlLabels':true},'themeVariables':{'primaryTextColor':'#000000','lineColor':'#333333','fontFamily':'Arial'}}}%%
+%%{init: {
+  "theme": "base",
+  "flowchart": {
+    "htmlLabels": true
+  },
+  "themeVariables": {
+    "primaryTextColor": "#000000",
+    "lineColor": "#333333",
+    "fontFamily": "Arial"
+  }
+}}%%
 flowchart TD
 
     1["<b>User</b><br/>User sends a message or a request"]
@@ -26,6 +36,6 @@ flowchart TD
 classDef default fill:#F5F5F5,stroke:#333333,stroke-width:2px,color:#000000;
 
 %% Arrow style
-linkStyle default stroke:#333333,stroke-width:2px,color:#000000;
+linkStyle default stroke:#333333,stroke-width:2px;
 
 ```
