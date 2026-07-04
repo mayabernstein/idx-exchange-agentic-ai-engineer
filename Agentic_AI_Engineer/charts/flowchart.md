@@ -10,7 +10,6 @@ graph TD
     5[Tool Executor<br><small>Using the selected skill to perform the ...</small>]
     6[Memory Update<br><small>Stores any new information or context ga...</small>]
     7[Response<br><small>OpenClaw builds the reply based on every...</small>]
-    8[User<br><small>The response travels back through WhatsA...</small>]
 
     1 --> 2
     2 --> 3
