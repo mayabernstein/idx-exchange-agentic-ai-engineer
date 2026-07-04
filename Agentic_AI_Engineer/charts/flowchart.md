@@ -2,15 +2,16 @@
 How OpenClaw handles routing, session state, channel integration, and tool execution
 
 ```mermaid
+%%{init: {'theme':'base','flowchart':{'htmlLabels':true},'themeVariables':{'primaryTextColor':'#000000','lineColor':'#333333','fontFamily':'Arial'}}}%%
 flowchart TD
 
-    1["<b>User</b><br/><small>User sends a message or a request</small>"]
-    2["<b>WhatsApp</b><br/><small>Message received via WhatsApp API</small>"]
-    3["<b>OpenClaw Runtime</b><br/><small>Acts as the brain of the<br/>application to which it prepares<br/>everything needed before deciding<br/>what to do by managing the session,<br/>gathering context, and rejects any<br/>potentially harmful requests.</small>"]
-    4["<b>Skill Selector</b><br/><small>Determines which skill to use based<br/>on the user request and context</small>"]
-    5["<b>Tool Executor</b><br/><small>Using the selected skill to perform<br/>the work requested or prompted by<br/>the user, which may include extra<br/>needed tools like API calls,<br/>database queries, or other external<br/>services.</small>"]
-    6["<b>Memory Update</b><br/><small>Stores any new information or<br/>context gathered during the<br/>interaction for future reference</small>"]
-    7["<b>Response</b><br/><small>OpenClaw builds the reply based on<br/>everything it has gathered and<br/>sends it back to the user via<br/>WhatsApp</small>"]
+    1["<b>User</b><br/>User sends a message or a request"]
+    2["<b>WhatsApp</b><br/>Message received via WhatsApp API"]
+    3["<b>OpenClaw Runtime</b><br/>Acts as the brain of the application to which<br/>it prepares everything needed before deciding<br/>what to do by managing the session, gathering<br/>context, and rejects any potentially harmful<br/>requests."]
+    4["<b>Skill Selector</b><br/>Determines which skill to use based on the<br/>user request and context"]
+    5["<b>Tool Executor</b><br/>Using the selected skill to perform the work<br/>requested or prompted by the user, which may<br/>include extra needed tools like API calls,<br/>database queries, or other external services."]
+    6["<b>Memory Update</b><br/>Stores any new information or context<br/>gathered during the interaction for future<br/>reference"]
+    7["<b>Response</b><br/>OpenClaw builds the reply based on everything<br/>it has gathered and sends it back to the user<br/>via WhatsApp"]
 
     1 --> 2
     2 --> 3
@@ -23,5 +24,8 @@ flowchart TD
 
 %% Default node style
 classDef default fill:#F5F5F5,stroke:#333333,stroke-width:2px,color:#000000;
+
+%% Arrow style
+linkStyle default stroke:#333333,stroke-width:2px,color:#000000;
 
 ```
