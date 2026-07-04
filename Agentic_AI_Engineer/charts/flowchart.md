@@ -18,5 +18,4 @@ graph TD
     4 --> 5
     5 --> 6
     6 --> 7
-    7 --> 1
-```
+    7 -->|The response travels back via WhatsApp to the user, completing the interaction loop| 1
