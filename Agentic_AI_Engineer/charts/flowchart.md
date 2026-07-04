@@ -32,10 +32,18 @@ flowchart TD
     7 -->|The response travels back via WhatsApp to the user, completing the interaction loop| 1
 
 
+
 %% Default node style
 classDef default fill:#F5F5F5,stroke:#333333,stroke-width:2px,color:#000000;
 
 %% Arrow style
 linkStyle default stroke:#333333,stroke-width:2px;
+class 1 default;
+class 2 default;
+class 3 default;
+class 4 default;
+class 5 default;
+class 6 default;
+class 7 default;
 
 ```
