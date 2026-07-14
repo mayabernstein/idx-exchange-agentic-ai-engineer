@@ -50,8 +50,8 @@ export async function parsePropertyQuery(query: string) {
     LM_Dec_3: bathsMatch ? Number(bathsMatch[1]) : null,
     LM_Int2_3: sqftMatch ? Number(sqftMatch[1]) : null,
     L_Type_: typeKey ? typeMap[typeKey] : null,
-    PoolPrivateYN: poolMatch ? "True" : null,
-    ViewYN: viewMatch ? "True" : null,
+    PoolPrivateYN: poolMatch ? 1 : null,
+    ViewYN: viewMatch ? 1 : null,
     AssociationFee: maxHoa,
   };
 }
