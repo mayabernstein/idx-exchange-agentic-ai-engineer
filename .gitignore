@@ -6,3 +6,5 @@
 *.py
 *.yml
 *.txt
+*.env
+node_modules/

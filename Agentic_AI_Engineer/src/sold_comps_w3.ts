@@ -18,3 +18,4 @@ export async function getSoldComps(city: string, months = 12) {
   `; 
   return query<SoldRow>(sql, [city, months]); 
 } 
+
