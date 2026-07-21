@@ -1,5 +1,5 @@
-import { query } from "./db";
-import { SoldRow } from "./types";
+import { query } from "../database/db.js";
+import type { SoldRow } from "../types/types.js";
 
 export async function getSoldComps(city: string, months = 12) { 
   const sql = ` 

@@ -1,6 +1,6 @@
-import { parsePropertyQuery } from "../week_2/service";
-import { searchActiveListings } from "./active_listing_w3";
-import { formatListing } from "./format_listing";
+import { parsePropertyQuery } from "../../week_2/service";
+import { searchActiveListings } from "../search/active_listing_w3";
+import { formatListing } from "../formatters/format_listing";
 
 async function test() {
     const userQuery =

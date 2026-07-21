@@ -1,6 +1,6 @@
-import { parsePropertyQuery } from "../week_2/service"; // week 2 parser
-import { getSoldComps } from "./sold_comps_w3";
-import { formatSold } from "./format_sold";
+import { parsePropertyQuery } from "../../week_2/service"; // week 2 parser
+import { getSoldComps } from "../search/sold_comps_w3";
+import { formatSold } from "../formatters/format_sold";
 
 async function test() {
     const userQuery = 

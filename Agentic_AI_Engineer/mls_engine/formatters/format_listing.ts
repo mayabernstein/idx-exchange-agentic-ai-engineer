@@ -1,4 +1,4 @@
-import { ListingRow } from "./types";
+import type { ListingRow } from "../types/types.js";
 
 export function formatListing(listing: ListingRow) {
     return {

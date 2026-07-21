@@ -1,5 +1,5 @@
-import { query } from "./db";
-import { PropertyFilters, ListingRow} from "./types";
+import { query } from "../database/db.js";
+import type { PropertyFilters, ListingRow} from "../types/types.js";
 
 // rets_property
 export async function searchActiveListings(filters: PropertyFilters, page = 1, 
@@ -36,15 +36,19 @@ params.push(filters.LM_Int2_3); }
   if (filters.L_Type_)     { sql += " AND L_Type_ = ?";          
 params.push(filters.L_Type_); } 
 // pool
-  if (filters.PoolPrivateYN)     { sql += " AND PoolPrivateYN = ?";    
-params.push(filters.PoolPrivateYN); } 
+  if (filters.PoolPrivateYN != null) {
+      sql += " AND PoolPrivateYN = ?";
+      params.push(filters.PoolPrivateYN);
+  }
 // view
-  if (filters.ViewYN)  { sql += " AND ViewYN = ?";           
-params.push(filters.ViewYN); } 
+  if (filters.ViewYN != null) {
+    sql += " AND ViewYN = ?";
+    params.push(filters.ViewYN);
+  }
  
   // Temporarily hardcode (LIMIT ? OFFSET ? to LIMIT 10 OFFSET 0)
-  sql += " ORDER BY L_SystemPrice ASC LIMIT 10 OFFSET 0"; 
-  params.push(limit, offset); 
+  sql += " ORDER BY L_SystemPrice ASC LIMIT 10 OFFSET 0";
+  params.push(limit, offset);
   
  
   return query<ListingRow>(sql, params); 

@@ -1,4 +1,4 @@
-import { SoldRow } from "./types";
+import type { SoldRow } from "../types/types.js";
 
 export function formatSold(sold: SoldRow) {
     return {
