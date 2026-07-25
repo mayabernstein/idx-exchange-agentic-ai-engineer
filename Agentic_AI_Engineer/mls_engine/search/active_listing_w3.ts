@@ -23,12 +23,36 @@ params.push(filters.L_City); }
 // max price
   if (filters.L_SystemPrice) { sql += " AND L_SystemPrice <= ?";   
 params.push(filters.L_SystemPrice); } 
-// beds
-  if (filters.L_Keyword2)     { sql += " AND L_Keyword2 >= ?";      
-params.push(filters.L_Keyword2); } 
-// baths
-  if (filters.LM_Dec_3)    { sql += " AND LM_Dec_3 >= ?";        
-params.push(filters.LM_Dec_3); } 
+// exact bedrooms
+if (filters.L_Keyword2 != null) {
+    sql += " AND L_Keyword2 = ?";
+    params.push(filters.L_Keyword2);
+}
+// minimum bedrooms
+if (filters.MinBeds != null) {
+    sql += " AND L_Keyword2 >= ?";
+    params.push(filters.MinBeds);
+}
+// maximum bedrooms
+if (filters.MaxBeds != null) {
+    sql += " AND L_Keyword2 <= ?";
+    params.push(filters.MaxBeds);
+}
+// exact bathrooms
+if (filters.LM_Dec_3 != null) {
+    sql += " AND LM_Dec_3 = ?";
+    params.push(filters.LM_Dec_3);
+}
+// minimum bathrooms
+if (filters.MinBaths != null) {
+    sql += " AND LM_Dec_3 >= ?";
+    params.push(filters.MinBaths);
+}
+// maximum bathrooms
+if (filters.MaxBaths != null) {
+    sql += " AND LM_Dec_3 <= ?";
+    params.push(filters.MaxBaths);
+}
 // sqft
  if (filters.LM_Int2_3)     { sql += " AND LM_Int2_3 >= ?";       
 params.push(filters.LM_Int2_3); } 

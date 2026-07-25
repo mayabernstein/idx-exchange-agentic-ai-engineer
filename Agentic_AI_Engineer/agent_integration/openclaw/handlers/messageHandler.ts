@@ -1,18 +1,26 @@
 import {
-    isPropertySearch,
+    looksLikePropertySearch,
     handlePropertySearch
 } from "../routers/propertySearchRouter.ts";
 
 
 export async function handleMessage(
+    userId: string,
     message: string,
-    normalHandler: (message: string) => Promise<any>
+    normalHandler: (message:string)=>Promise<any>
 ) {
 
-    if (isPropertySearch(message)) {
+    if (looksLikePropertySearch(message)) {
         console.log("MLS route activated");
 
-        return await handlePropertySearch(message);
+        const propertyResult = await handlePropertySearch(
+            userId,
+            message
+        );
+
+        if (propertyResult) {
+            return propertyResult;
+        }
     }
 
     return await normalHandler(message);

@@ -2,7 +2,11 @@ export interface PropertyFilters {
     L_City: string | null;
     L_SystemPrice: number | null;
     L_Keyword2: number | null;
+    MinBeds: number | null;
+    MaxBeds: number | null;
     LM_Dec_3: number | null;
+    MinBaths: number | null;
+    MaxBaths: number | null;
     LM_Int2_3: number | null;
     L_Type_: string | null;
     PoolPrivateYN: number | null;

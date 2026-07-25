@@ -1,5 +1,5 @@
 // Main auto-reply pipeline: prepares context, runs commands, and dispatches agents.
-import { tryPropertySearch } from "../routers/propertySearchRouter.js";
+import { tryPropertySearch } from "../../idx/property-search.js";
 import fs from "node:fs/promises";
 import { normalizeOptionalString } from "@openclaw/normalization-core/string-coerce";
 import { normalizeStringEntries } from "@openclaw/normalization-core/string-normalization";
@@ -21,10 +21,7 @@ import { logVerbose } from "../../globals.js";
 import { measureDiagnosticsTimelineSpan } from "../../infra/diagnostics-timeline.js";
 import { formatErrorMessage } from "../../infra/errors.js";
 import { createSubsystemLogger } from "../../logging/subsystem.js";
-import {
-  buildAgentHookContextChannelFields,
-  buildAgentHookContextIdentityFields,
-} from "../../plugins/hook-agent-context.js";
+import { buildAgentHookContextChannelFields } from "../../plugins/hook-agent-context.js";
 import { defaultRuntime } from "../../runtime.js";
 import { createLazyImportLoader } from "../../shared/lazy-promise.js";
 import { resolveCommandTurnTargetSessionKey } from "../command-turn-context.js";
@@ -49,10 +46,7 @@ import {
 import { handleInlineActions } from "./get-reply-inline-actions.js";
 import { maybeResolveNativeSlashCommandFastReply } from "./get-reply-native-slash-fast-path.js";
 import { runPreparedReply } from "./get-reply-run.js";
-import type {
-  InternalGetReplyOptions as BaseInternalGetReplyOptions,
-  ReplySessionBinding,
-} from "./get-reply.types.js";
+import type { ReplySessionBinding } from "./get-reply.types.js";
 import { finalizeInboundContext } from "./inbound-context.js";
 import { hasInboundMedia, hasInboundMediaForUnderstanding } from "./inbound-media.js";
 import { emitPreAgentMessageHooks } from "./message-preprocess-hooks.js";
@@ -66,9 +60,11 @@ import {
 } from "./stored-model-override.js";
 import { createTypingController } from "./typing.js";
 
+// testing
+console.log("🔥 CUSTOM GET-REPLY LOADED 🔥");
 type ResetCommandAction = "new" | "reset";
 
-type RuntimeInternalGetReplyOptions = BaseInternalGetReplyOptions & {
+type InternalGetReplyOptions = GetReplyOptions & {
   onSessionPrepared?: (binding: ReplySessionBinding) => void;
 };
 
@@ -281,20 +277,30 @@ export async function getReplyFromConfig(
   const finalized = resolverTiming.measureSync("reply.finalize_context", () =>
     finalizeInboundContext(ctx),
   );
- 
-  const propertyReply = await tryPropertySearch(
-      finalized.Body ??
-      finalized.RawBody ??
-      finalized.CommandBody ??
-      ""
-  );
+  // Testing
+  console.log("=== CUSTOM GET-REPLY RUNNING ===");
+  console.log("Message:", finalized.Body ?? finalized.RawBody ?? finalized.CommandBody ?? "");
 
+  const message = 
+        finalized.Body ??
+        finalized.RawBody ??
+        finalized.CommandBody ??
+        "";
+  const userId = finalized.SessionKey; 
+  console.log("PROPERTY TEST");
+  console.log("USER ID:", userId);
+  console.log("MESSAGE:", message);
+  const propertyReply = await tryPropertySearch(
+        userId,
+        message
+  );
+  console.log("PROPERTY REPLY:", propertyReply);
   if (propertyReply) {
       return {
           text: propertyReply
       };
   }
-    const { agentSessionKey, agentId } = resolverTiming.measureSync(
+  const { agentSessionKey, agentId } = resolverTiming.measureSync(
     "reply.resolve_agent_scope",
     () => {
       const targetSessionKey = resolveCommandTurnTargetSessionKey(finalized);
@@ -304,7 +310,7 @@ export async function getReplyFromConfig(
         agentId: resolveSessionAgentId({
           sessionKey: resolvedAgentSessionKey,
           config: cfg,
-          fallbackAgentId: finalized.AgentId,
+          agentId: finalized.AgentId,
         }),
       };
     },
@@ -345,7 +351,6 @@ export async function getReplyFromConfig(
   );
   const resolvedOpts =
     mergedSkillFilter !== undefined ? { ...opts, skillFilter: mergedSkillFilter } : opts;
-  const internalResolvedOpts = resolvedOpts as RuntimeInternalGetReplyOptions | undefined;
   const agentCfg = cfg.agents?.defaults;
   const sessionCfg = cfg.session;
   const { defaultProvider, defaultModel, aliasIndex } = resolverTiming.measureSync(
@@ -501,14 +506,11 @@ export async function getReplyFromConfig(
           ctx: finalized,
           cfg,
           commandAuthorized,
-          requestedSessionId: internalResolvedOpts?.requestedSessionId,
-          resumeRequestedSession: internalResolvedOpts?.resumeRequestedSession,
         }),
       );
   const {
     sessionCtx,
     sessionEntry,
-    sessionEntryHandle,
     previousSessionEntry,
     sessionStore,
     sessionKey,
@@ -525,7 +527,7 @@ export async function getReplyFromConfig(
   } = sessionState;
   let { abortedLastRun } = sessionState;
   resolverTimingSessionKey = sessionKey ?? resolverTimingSessionKey;
-  internalResolvedOpts?.onSessionPrepared?.({
+  (resolvedOpts as InternalGetReplyOptions | undefined)?.onSessionPrepared?.({
     sessionKey,
     sessionId,
     storePath,
@@ -549,7 +551,6 @@ export async function getReplyFromConfig(
         sessionEntry.pendingFinalDeliveryAttemptCount = undefined;
         sessionEntry.pendingFinalDeliveryLastError = undefined;
         sessionEntry.pendingFinalDeliveryContext = undefined;
-        sessionEntryHandle.replaceCurrent(sessionEntry);
         if (sessionKey && sessionStore) {
           sessionStore[sessionKey] = sessionEntry;
         }
@@ -586,7 +587,6 @@ export async function getReplyFromConfig(
       sessionCtx,
       ctx: finalized,
       sessionEntry,
-      sessionEntryHandle,
       sessionStore,
       sessionKey,
       storePath,
@@ -613,14 +613,6 @@ export async function getReplyFromConfig(
           sessionEntry.groupChannel ?? sessionCtx.GroupChannel ?? finalized.GroupChannel,
         groupSubject: sessionEntry.subject ?? sessionCtx.GroupSubject ?? finalized.GroupSubject,
         parentSessionKey: sessionCtx.ModelParentSessionKey ?? sessionCtx.ParentSessionKey,
-        directUserIds: [
-          sessionEntry.origin?.nativeDirectUserId,
-          sessionEntry.origin?.from,
-          sessionEntry.origin?.to,
-          finalized.OriginatingTo,
-          finalized.From,
-          finalized.SenderId,
-        ],
       })
     : null;
   const resolvedChannelModelOverride =
@@ -710,13 +702,6 @@ export async function getReplyFromConfig(
       commandAuthorized,
     });
     logResolverTiming("milestone", "before_fast_directive_prepared_reply");
-    const propertyResult = await tryPropertySearch(
-      finalized.RawBody ?? ""
-    );
-
-    if (propertyResult) {
-      return propertyResult;
-    }
     const fastReplyResult = await traceGetReplyPhase("reply.run_prepared_reply", () =>
       runPreparedReply({
         ctx,
@@ -765,7 +750,6 @@ export async function getReplyFromConfig(
         resetTriggered,
         systemSent,
         sessionEntry,
-        sessionEntryHandle,
         sessionStore,
         sessionKey,
         sessionId,
@@ -824,10 +808,6 @@ export async function getReplyFromConfig(
     elevatedAllowed,
     elevatedFailures,
     defaultActivation,
-    resolvedFastMode,
-    resolvedFastModeAutoOnSeconds,
-    resolvedFastModeOverride,
-    resolvedFastModeAutoOnSecondsOverride,
     resolvedVerboseLevel,
     resolvedElevatedLevel,
     execOverrides,
@@ -987,10 +967,6 @@ export async function getReplyFromConfig(
         originatingChannel: sessionCtx.OriginatingChannel,
         provider: sessionCtx.Provider,
       });
-      const hookChatId =
-        normalizeOptionalString(sessionCtx.NativeChannelId) ??
-        normalizeOptionalString(sessionCtx.ChatId);
-      const hookTrigger = opts?.isHeartbeat ? "heartbeat" : "user";
       const hookResult = await traceGetReplyPhase("reply.before_agent_reply_hooks", () =>
         hookRunner.runBeforeAgentReply(
           { cleanedBody },
@@ -999,19 +975,13 @@ export async function getReplyFromConfig(
             sessionKey: agentSessionKey,
             sessionId,
             workspaceDir,
-            trigger: hookTrigger,
+            trigger: opts?.isHeartbeat ? "heartbeat" : "user",
             ...buildAgentHookContextChannelFields({
               sessionKey: agentSessionKey,
               messageProvider: hookMessageProvider,
               currentChannelId: sessionCtx.OriginatingTo ?? ctx.OriginatingTo ?? ctx.To,
               messageTo: sessionCtx.OriginatingTo ?? ctx.OriginatingTo ?? ctx.To,
               senderId: sessionCtx.SenderId ?? ctx.SenderId,
-            }),
-            ...buildAgentHookContextIdentityFields({
-              trigger: hookTrigger,
-              senderId: sessionCtx.SenderId,
-              chatId: hookChatId,
-              channelContext: sessionCtx.ChannelContext ?? ctx.ChannelContext,
             }),
           },
         ),
@@ -1057,10 +1027,6 @@ export async function getReplyFromConfig(
       directives,
       defaultActivation,
       resolvedThinkLevel,
-      resolvedFastMode,
-      resolvedFastModeAutoOnSeconds,
-      resolvedFastModeOverride,
-      resolvedFastModeAutoOnSecondsOverride,
       resolvedVerboseLevel,
       resolvedReasoningLevel,
       resolvedElevatedLevel,
