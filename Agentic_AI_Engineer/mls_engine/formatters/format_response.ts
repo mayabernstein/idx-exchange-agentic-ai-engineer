@@ -16,7 +16,8 @@ export function formatPropertyResponse(
                 `Price: $${listing.price?.toLocaleString()}`,
                 `Beds | Baths: ${listing.bedrooms} br | ${listing.bathrooms} ba`,
                 `Sqft: ${listing.sqft?.toLocaleString()} sqft`,
-                `Type: ${listing.propertyType}`
+                `Type: ${listing.propertyType}`, 
+                `Photos: ${listing.photoCount ?? 0}`
             ].join("\n"))
             .join("\n\n");
     } else {

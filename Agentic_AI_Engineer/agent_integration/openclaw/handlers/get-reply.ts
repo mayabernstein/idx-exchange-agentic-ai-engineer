@@ -279,13 +279,17 @@ export async function getReplyFromConfig(
   );
   // Testing
   console.log("=== CUSTOM GET-REPLY RUNNING ===");
-  console.log("Message:", finalized.Body ?? finalized.RawBody ?? finalized.CommandBody ?? "");
+
+  console.log("===== FINALIZED OBJECT =====");
+  console.dir(finalized, { depth: null });
+  console.log("============================");
 
   const message = 
-        finalized.Body ??
+        finalized.BodyForAgent ??
         finalized.RawBody ??
         finalized.CommandBody ??
         "";
+  console.log("Message:", message);
   const userId = finalized.SessionKey; 
   console.log("PROPERTY TEST");
   console.log("USER ID:", userId);

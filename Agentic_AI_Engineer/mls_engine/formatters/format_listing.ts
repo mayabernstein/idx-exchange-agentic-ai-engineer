@@ -12,6 +12,7 @@ export function formatListing(listing: ListingRow) {
         status: listing.status,
         yearBuilt: listing.YearBuilt,
         daysOnMarket: listing.DaysOnMarket,
+        photoCount: listing.PhotoCount,
         agent:
             `${listing.LA1_UserFirstName ?? ""} ${listing.LA1_UserLastName ?? ""}`.trim(),
         office: listing.LO1_OrganizationName,
