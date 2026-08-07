@@ -7,4 +7,7 @@
 *.yml
 *.txt
 *.env
+**/embeddings/output/*.npy
+__pycache__/
+*.pyc
 node_modules/
