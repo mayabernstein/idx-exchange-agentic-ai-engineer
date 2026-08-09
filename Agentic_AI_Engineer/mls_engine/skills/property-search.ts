@@ -3,8 +3,9 @@
 import { handlePropertyConversation } from "../conversational_property/index";
 import { hasActiveConversation } from "../conversational_property/session";
 import { formatPropertyResponse } from "../mls_engine/formatters/format_response";
+
 function looksLikePropertySearch(text: string) {
-    return /(bed(room)?|bath|condo|house|townhome|irvine|price|under|\$|\d+\s*br)/i.test(text);
+    return /(bed(room)?|bath|condo|house|townhome|price|under|\$|\d+\s*br)/i.test(text);
 }
 
 export async function tryPropertySearch(userId: string, message: string) {
@@ -32,6 +33,7 @@ export async function tryPropertySearch(userId: string, message: string) {
 
     return result.message;
 }
+
 /*
 function looksLikePropertySearch(text: string) {
     return /(bed(room)?|bath|condo|house|townhome|irvine|price|under|\$|\d+\s*br)/i.test(text);
