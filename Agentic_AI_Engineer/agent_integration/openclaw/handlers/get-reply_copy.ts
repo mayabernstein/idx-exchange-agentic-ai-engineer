@@ -1,6 +1,5 @@
 // Main auto-reply pipeline: prepares context, runs commands, and dispatches agents.
 import { tryPropertySearch } from "../../idx/property-search.js";
-import { tryMarketAnalytics } from "../../idx/market-analytics.js"; 
 import fs from "node:fs/promises";
 import { normalizeOptionalString } from "@openclaw/normalization-core/string-coerce";
 import { normalizeStringEntries } from "@openclaw/normalization-core/string-normalization";
@@ -303,16 +302,6 @@ export async function getReplyFromConfig(
   if (propertyReply) {
       return {
           text: propertyReply
-      };
-  }
-  const marketReply = await tryMarketAnalytics(
-    userId,
-    message
-  );
-  console.log("MARKET REPLY:", marketReply);
-  if (marketReply) {
-      return {
-          text: marketReply
       };
   }
   const { agentSessionKey, agentId } = resolverTiming.measureSync(
