@@ -12,6 +12,17 @@ export type Intent =
     | "mixed"
     | "uncategorized";
 
+export type ClassifiedSegment = {
+    query: string;
+    intents: Intent[];
+};
+
+export type ClassificationResult = {
+    intent: Intent;
+    intents: Intent[];
+    segments: ClassifiedSegment[];
+}
+
 export class classifyIntent {
     private validCities: string[] = [];
 
@@ -69,7 +80,16 @@ export class classifyIntent {
             ).test(text);
         });
     }
-
+    
+    private splitQuery(text: string): string[] {
+        return text
+            .split(
+                /(?:\band\s+|,\s*)(?=(tell me|what is|what does|explain|show me|find|search|recommend|compare|give me|let me know)\b)/i
+            )
+            .map(part => part.trim())
+            .filter(part => part.length > 0);
+    }
+        
     private looksLikePropertySearch(text: string): boolean {
         const searchAction =
             /(find|search|show me|looking for|find me)/i.test(text);
@@ -80,9 +100,14 @@ export class classifyIntent {
         const priceFilter =
             /\b(under|below)\s+\$?\s*[\d,]+/i.test(text);
 
+        const recommendationTerm = /(similar|recommend|recommendation|like this|comparable properties|properties like|homes like)/i.test(text);
+
         return (
-            (searchAction && propertyTerm) ||
-            (searchAction && priceFilter)
+            !recommendationTerm &&
+            (
+                (searchAction && propertyTerm) ||
+                (searchAction && priceFilter)
+            )
         );
     }
 
@@ -115,13 +140,52 @@ export class classifyIntent {
     }
 
     private looksLikeKnowledgeQuestion(text: string): boolean {
-        return /(what does|what is|difference between|different from|different than|compare|comparison|versus|vs\.?|define|definition|explain|meaning|terminology|mls field|field definition|schema|reso|trestle|metadata)/i.test(text);
+        const knowledgeTopic = /(what does|what is|difference between|different from|different than|compare|comparison|versus|vs\.?|define|definition|explain|meaning|terminology|mls field|field definition|schema|reso|trestle|metadata)/i.test(text);
+
+        return (
+            knowledgeTopic && !this.containsValidCity(text)
+        )
+    }
+
+    private detectIntentsForSegment(text: string): Intent[] {
+
+        const isSearch =
+            this.looksLikePropertySearch(text);
+
+        const isMarket =
+            this.looksLikeMarketQuestion(text);
+
+        const isRecommendation =
+            this.looksLikeRecommendation(text);
+
+        const isKnowledge =
+            this.looksLikeKnowledgeQuestion(text);
+
+        const detectedIntents: Intent[] = [];
+
+        if (isSearch) {
+            detectedIntents.push("search");
+        }
+
+        if (isMarket) {
+            detectedIntents.push("market");
+        }
+
+        if (isRecommendation) {
+            detectedIntents.push("recommendation");
+        }
+
+        if (isKnowledge) {
+            detectedIntents.push("knowledge");
+        }
+
+        return detectedIntents;
     }
 
     public async classify(
         message: string,
         userId: string
-    ): Promise<Intent> {
+    ): Promise<ClassificationResult> {
 
         const text = message.trim();
 
@@ -141,85 +205,101 @@ export class classifyIntent {
             activeConversation &&
             this.looksLikePropertyFollowUp(text)
         ) {
-            return "search";
+            return {
+                intent: "search",
+                intents: ["search"],
+                segments: [
+                    {
+                        query: text,
+                        intents: ["search"]
+                    }
+                ]
+            };
         }
 
-        // --------------------------------
-        // Detect individual intent signals
-        // --------------------------------
+        // Split the message into separate clauses
+        const queryParts = this.splitQuery(text);
 
-        const isSearch =
-            this.looksLikePropertySearch(text);
-
-        const isMarket =
-            this.looksLikeMarketQuestion(text);
-
-        const isRecommendation =
-            this.looksLikeRecommendation(text);
-
-        const isKnowledge =
-            this.looksLikeKnowledgeQuestion(text);
-
-        const containsValidCity =
-            this.containsValidCity(text);
-
-        console.log("CLASSIFIER DEBUG:");
-        console.log("isSearch:", isSearch);
-        console.log("isMarket:", isMarket);
         console.log(
-            "containsValidCity:",
-            containsValidCity
+            "QUERY PARTS:",
+            queryParts
         );
-        console.log(
-            "isRecommendation:",
-            isRecommendation
-        );
-        console.log("isKnowledge:", isKnowledge);
 
-        // --------------------------------
+        // Detect intents for each clause 
+        const detectedIntents: Intent[] = [];
+        const segments: ClassifiedSegment[] = [];
+
+        let contextHasCity = false;
+
+        for (const part of queryParts) {
+            const partContainsCity = this.containsValidCity(part);
+            const partIntents = this.detectIntentsForSegment(part);
+
+            if (
+                contextHasCity &&
+                !partContainsCity
+            ) {
+                const marketTopic =
+                    /(market|housing market|buyer's market|seller's market|average price|median price|home prices?|housing prices?|prices? (are )?(rising|falling|increasing|decreasing)|price per square foot|price per sqft|inventory|days on market|dom|trend|good time to buy|good time to sell)/i.test(part);
+
+                if (
+                    marketTopic &&
+                    !partIntents.includes("market")
+                ) {
+                    partIntents.push("market");
+                }
+            }
+            console.log("PART:", part);
+            console.log("PART INTENTS:", partIntents);
+
+            segments.push({
+                query:part,
+                intents:partIntents
+            });
+
+            for (const intent of partIntents) {
+                if (!detectedIntents.includes(intent)) {
+                    detectedIntents.push(intent);
+                }
+            }
+            if (partContainsCity) {
+                contextHasCity = true;
+            }
+        }
+ 
+        console.log(
+            "DETECTED INTENTS:",
+            detectedIntents
+        );
+
+        console.log(
+            "CLASSIFIED SEGMENTS:",
+            segments
+        );
+
         // Mixed intent
-        // --------------------------------
-        
-        if (isSearch && isMarket) {
-            return "mixed";
+        if (detectedIntents.length > 1) {
+            return {
+                intent: "mixed",
+                intents: detectedIntents,
+                segments
+            };
         }
 
-        // --------------------------------
-        // Recommendation
-        // --------------------------------
-
-        if (isRecommendation) {
-            return "recommendation";
+        // Single intent
+        if (detectedIntents.length === 1) {
+            return {
+                intent: detectedIntents[0],
+                intents: detectedIntents,
+                segments
+            };
         }
 
-        // --------------------------------
-        // Market
-        // --------------------------------
-
-        if (isMarket) {
-            return "market";
-        }
-
-        // --------------------------------
-        // Property search
-        // --------------------------------
-
-        if (isSearch) {
-            return "search";
-        }
-
-        // --------------------------------
-        // Knowledge
-        // --------------------------------
-
-        if (isKnowledge) {
-            return "knowledge";
-        }
-
-        // --------------------------------
-        // Uncategorized
-        // --------------------------------
-
-        return "uncategorized";
+        // No recognized intent
+        return {
+            intent: "uncategorized",
+            intents: [],
+            segments
+        };
     }
 }

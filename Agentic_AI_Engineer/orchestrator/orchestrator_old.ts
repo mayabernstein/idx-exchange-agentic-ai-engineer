@@ -10,6 +10,26 @@ import { classifyIntent } from "./classifyIntent";
 const classifier = new classifyIntent();
 await classifier.initialize();
 
+function splitMixedQuery(query: string) {
+    const parts = query.split(/\band\b/i);
+
+    const propertyQuery = parts[0].trim();
+    let marketQuery = parts.slice(1).join(" and ").trim();
+
+    const cityMatch = propertyQuery.match(
+        /\bin\s+(.+)$/i
+    );
+
+    if (cityMatch) {
+        const city = cityMatch[1].trim();
+        marketQuery = `${marketQuery} in ${city}`;
+    }
+
+    return {
+        propertyQuery,
+        marketQuery
+    };
+}
 // Main entry point for the multi-agent system
 export async function orchestrate(
     query: string,
@@ -24,7 +44,6 @@ export async function orchestrate(
         activePropertyConversation
     );
 
-    // Continue active property conversation
     if (activePropertyConversation) {
         console.log(
             "CONTINUING PROPERTY CONVERSATION"
@@ -35,15 +54,13 @@ export async function orchestrate(
             query
         );
     }
-    // Classify query
-    const classification = await classifier.classify(query, userId);
+    // Step 1: Determine what the user is asking
+    const intent = await classifier.classify(query, userId);
 
-    console.log("CLASSIFIED INTENT:", classification.intent);
+    console.log("CLASSIFIED INTENT:", intent);
 
-    console.log("DETECTED INTENTS:", classification.intents);
-
-    // Single intent
-    switch (classification.intent) {
+    // Step 2: Route the query to the appropriate agent
+    switch (intent) {
 
         case "search":
             // Call MLS/property search functionality
@@ -73,35 +90,22 @@ export async function orchestrate(
             );
 
         case "mixed": {
-            const results: string[] = [];
 
-            if (classification.intents.includes("search")) {
-                const propertyResult = 
-                    await tryPropertySearch(userId, query);
-                results.push(propertyResult);
-            }
-            if (classification.intents.includes("market")) {
-                const marketResult = 
-                    await tryMarketAnalytics(userId, query);
-                results.push(marketResult);
-            }
-            if (classification.intents.includes("recommendation")) {
-                const session = getSession(userId);
+            const { propertyQuery, marketQuery } =
+                splitMixedQuery(query);
 
-                if (session.lastResults?.length) {
-                    const recommendationResult = await recommendationEngine(session.lastResults[0]);
+            const [listings, stats] = await Promise.all([
+                tryPropertySearch(userId, propertyQuery),
+                tryMarketAnalytics(userId, marketQuery)
+            ]);
 
-                    results.push(recommendationResult);
-                } else {
-                    results.push("Please search for a property first so I can find similar listings.");
-                }
-            }
-            if (classification.intents.includes("knowledge")) {
-                const knowledgeResult = await tryRealEstateRAG(userId, query);
+            console.log("MIXED PROPERTY RESULT:", listings);
+            console.log("MIXED MARKET RESULT:", stats);
 
-                results.push(knowledgeResult);
-            }
-            return results.join("\n\n");
+            return formatCombinedResponse(
+                listings,
+                stats
+            );
         }
 
         // case "uncategorized"
