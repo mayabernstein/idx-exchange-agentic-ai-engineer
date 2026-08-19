@@ -1,4 +1,5 @@
 export interface ConversationListing {
+    listingId: string;
     address: string;
     city: string;
     price: number;

@@ -2,6 +2,7 @@ import type { ListingRow } from "../types/types.js";
 
 export function formatListing(listing: ListingRow) {
     return {
+        listingId: listing.L_ListingID, 
         address: listing.L_Address,
         city: listing.L_City,
         price: listing.price,

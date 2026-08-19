@@ -1,7 +1,6 @@
 // Main auto-reply pipeline: prepares context, runs commands, and dispatches agents.
-import { tryPropertySearch } from "../../idx/property-search.js";
-import { tryMarketAnalytics } from "../../idx/market-analytics.js"; 
-import { tryRealEstateRAG } from "../../idx/real-estate-rag.js";
+import { orchestrate } from "../../idx/orchestrator.js";
+import { classifyIntent } from "../../idx/classifyIntent.js";
 import fs from "node:fs/promises";
 import { normalizeOptionalString } from "@openclaw/normalization-core/string-coerce";
 import { normalizeStringEntries } from "@openclaw/normalization-core/string-normalization";
@@ -293,39 +292,17 @@ export async function getReplyFromConfig(
         "";
   console.log("Message:", message);
   const userId = finalized.SessionKey; 
-  console.log("PROPERTY TEST");
   console.log("USER ID:", userId);
   console.log("MESSAGE:", message);
-  const propertyReply = await tryPropertySearch(
-        userId,
-        message
+  const response = await orchestrate(
+    message,
+    userId
   );
-  console.log("PROPERTY REPLY:", propertyReply);
-  if (propertyReply) {
-      return {
-          text: propertyReply
-      };
-  }
-  const ragReply = await tryRealEstateRAG(
-      userId,
-      message
-  );
-  console.log("RAG REPLY:", ragReply);
-  if (ragReply) {
-      return {
-          text: ragReply
-      };
-  }
-  const marketReply = await tryMarketAnalytics(
-    userId,
-    message
-  );
-  console.log("MARKET REPLY:", marketReply);
-  if (marketReply) {
-      return {
-          text: marketReply
-      };
-  }
+  console.log("ORCHESTRATOR REPLY:", response);
+  return {
+    text: response
+  };
+
   const { agentSessionKey, agentId } = resolverTiming.measureSync(
     "reply.resolve_agent_scope",
     () => {

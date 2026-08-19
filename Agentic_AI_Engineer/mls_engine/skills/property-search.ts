@@ -1,11 +1,11 @@
 //import { parsePropertyQuery } from "../../../idx-exchange-nlp-engineer/Agentic_AI_Engineer/week_2/service.ts";
 //import { handleWeek3Search } from "../../../idx-exchange-nlp-engineer/Agentic_AI_Engineer/mls_engine/skills/handleWeek3Search.ts";
-import { handlePropertyConversation } from "../conversational_property/index";
-import { hasActiveConversation } from "../conversational_property/session";
-import { formatPropertyResponse } from "../mls_engine/formatters/format_response";
+import { handlePropertyConversation } from "../../conversational_property/index";
+import { hasActiveConversation } from "../../conversational_property/session";
+import { formatPropertyResponse } from "../../mls_engine/formatters/format_response";
 
 function looksLikePropertySearch(text: string) {
-    return /(bed(room)?|bath|condo|house|townhome|price|under|\$|\d+\s*br)/i.test(text);
+    return /(home|homes|house|houses|property|properties|bed(room)?|bath|condo|townhome|price|under|\$|\d+\s*br)/i.test(text);
 }
 
 export async function tryPropertySearch(userId: string, message: string) {

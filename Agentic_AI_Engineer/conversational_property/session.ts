@@ -35,11 +35,45 @@ export function clearSession(userId: string) {
 export function hasActiveConversation(userId: string): boolean {
     const session = getSession(userId);
 
-    return (
-        session.city != null ||
-        session.maxPrice != null ||
-        session.beds != null ||
-        session.baths != null ||
-        session.type != null
-    );
+    // No property search has started
+    if (
+        session.city == null &&
+        session.maxPrice == null &&
+        session.beds == null &&
+        session.baths == null &&
+        session.type == null
+    ) {
+        return false;
+    }
+
+    // There is a pending property-search question
+    if (session.maxPrice == null) {
+        return true;
+    }
+
+    if (!session.typeAnswered) {
+        return true;
+    }
+
+    if (
+        session.beds == null &&
+        session.minBeds == null &&
+        session.maxBeds == null
+    ) {
+        return true;
+    }
+
+    if (
+        session.baths == null &&
+        session.minBaths == null &&
+        session.maxBaths == null
+    ) {
+        return true;
+    }
+
+    if (!session.poolAnswered) {
+        return true;
+    }
+
+    return false;
 }
