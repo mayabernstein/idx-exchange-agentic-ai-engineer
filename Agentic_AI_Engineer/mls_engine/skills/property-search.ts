@@ -3,16 +3,45 @@
 import { handlePropertyConversation } from "../../conversational_property/index";
 import { hasActiveConversation } from "../../conversational_property/session";
 import { formatPropertyResponse } from "../../mls_engine/formatters/format_response";
+import { formatListing } from "../../mls_engine/formatters/format_listing";
+import { semanticPropertySearch } from "../../embeddings/semanticSearch";
 
 function looksLikePropertySearch(text: string) {
-    return /(home|homes|house|houses|property|properties|bed(room)?|bath|condo|townhome|price|under|\$|\d+\s*br)/i.test(text);
+    return /(\d+\s*(bed|bedroom|br)|\d+\s*(bath|bathroom|ba)|condo|townhome|townhouse|single\s+family|active\s+listing|show\s+me|find\s+homes|listings?|properties?|homes?\s+under|\$\d+)/i.test(text);
+}
+function looksLikeSemanticSearch(text: string) {
+    return /(charming|character|cozy|luxurious|spacious|modern|elegant|beautiful|scenic|mountain views|ocean views|natural light|open concept|quiet|peaceful|craftsman|entertaining)/i.test(text);
 }
 
 export async function tryPropertySearch(userId: string, message: string) {
     console.log("PROPERTY SEARCH CALLED:", message);
 
+    if (looksLikeSemanticSearch(message)) {
+            console.log("SEMANTIC SEARCH MATCHED");
+    
+            const results = await semanticPropertySearch(message);
+            console.log("SEMANTIC RESULTS:", results);
+
+            const formattedListings = results.map(formatListing);
+    
+            const response = {
+                complete: true, 
+                message: formatPropertyResponse(
+                formattedListings,
+                []
+            ),
+            results: formattedListings
+        };
+        return response;
+    } 
+
     if (!looksLikePropertySearch(message) && !hasActiveConversation(userId)) {
-        return null; 
+        const response = {
+            complete: false,
+            message: "",
+            results: []
+        }; 
+        return response;
     }
 
     console.log("PROPERTY SEARCH MATCHED");
@@ -25,15 +54,23 @@ export async function tryPropertySearch(userId: string, message: string) {
     console.log("CONVERSATION RESULT:", result);
 
     if (result.complete && result.results) {
-        return `${result.message}\n\n${formatPropertyResponse(
+        return {
+            complete: true,
+            message: `${result.message}\n\n${formatPropertyResponse(
             result.results,
             []
-        )}`;
+        )}`,
+        results: result.results
+        };
     }
-
-    return result.message;
+    const response = {
+        complete: result.complete,
+        message: result.message,
+        results: result.results ?? []
+    }
+    
+    return response;
 }
-
 /*
 function looksLikePropertySearch(text: string) {
     return /(bed(room)?|bath|condo|house|townhome|irvine|price|under|\$|\d+\s*br)/i.test(text);

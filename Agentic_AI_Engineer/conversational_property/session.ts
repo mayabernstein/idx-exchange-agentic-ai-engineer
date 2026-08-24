@@ -20,7 +20,9 @@ export function getSession(userId: string): UserSession {
             poolAnswered: false, 
             view: null,
             maxHoa: null,
-            conversationStep: 0
+            conversationStep: 0,
+
+            pendingRecommendation: false // mixed intent
         });
     }
     return sessions.get(userId)!;

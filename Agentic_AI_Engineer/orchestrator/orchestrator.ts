@@ -2,7 +2,7 @@ import { tryPropertySearch } from "./property-search";
 import { tryMarketAnalytics } from "./market-analytics";
 import { recommendationEngine } from "./recommendation_agent";
 import { tryRealEstateRAG } from "./real-estate-rag";
-import { getSession } from "../conversational_property/session";
+import { getSession, updateSession } from "../conversational_property/session";
 import { formatCombinedResponse } from "./format-combined-response";
 import { hasActiveConversation } from "../conversational_property/session";
 import { classifyIntent } from "./classifyIntent";
@@ -17,7 +17,8 @@ export async function orchestrate(
 ): Promise<string> {
     console.log("ORCHESTRATOR QUERY:", query);
 
-    const activePropertyConversation = hasActiveConversation(userId);
+    const activePropertyConversation = 
+        hasActiveConversation(userId);
 
     console.log(
         "ACTIVE PROPERTY CONVERSATION:",
@@ -28,27 +29,81 @@ export async function orchestrate(
     if (activePropertyConversation) {
         console.log(
             "CONTINUING PROPERTY CONVERSATION"
+        );
+        const propertyResult = await tryPropertySearch(userId, query);
+
+        console.log("PROPERTY RESULT:", propertyResult);
+
+        if (!propertyResult.complete) {
+            return propertyResult.message;
+        }
+
+        const session = getSession(userId);
+
+        console.log(
+            "PENDING RECOMMENDATION:",
+            session.pendingRecommendation
+        );
+
+        if (
+            session.pendingRecommendation && 
+            propertyResult.results?.length
+        ) {
+            console.log("RUNNING PENDING RECOMMENDATION");
+
+            const recommendationResult = 
+                await recommendationEngine(
+                    propertyResult.results[0]
+                );
+            
+            updateSession(userId, {
+                pendingRecommendation: false
+            });
+
+            return `${propertyResult.message}\n\n${recommendationResult}`;
+        }
+        return propertyResult.message;
+    }
+    // Classify query 
+    const classification = 
+        await classifier.classify(query, userId);
+    
+    console.log(
+        "CLASSIFIED INTENT:",
+        classification.intent
+    )
+
+    console.log(
+        "DETECTED INTENTS:",
+        classification.intents
+    )
+
+    /*
+    // Continue active property conversation
+   ''' if (
+        activePropertyConversation && 
+        classification.intent === "search"
+    ) {
+        console.log(
+            "CONTINUING PROPERTY CONVERSATION"
         );  
 
         return await tryPropertySearch(
             userId,
             query
         );
-    }
-    // Classify query
-    const classification = await classifier.classify(query, userId);
-
-    console.log("CLASSIFIED INTENT:", classification.intent);
-
-    console.log("DETECTED INTENTS:", classification.intents);
+    }'''*/
 
     // Single intent
     switch (classification.intent) {
 
-        case "search":
+        case "search": {
             // Call MLS/property search functionality
-            return await tryPropertySearch(userId, query);
-
+            const propertyResult = 
+                await tryPropertySearch(userId, query);
+            return propertyResult.message; 
+        }
+        
         case "market":
             // Call market analytics functionality
             return await tryMarketAnalytics(userId, query);
@@ -76,9 +131,32 @@ export async function orchestrate(
             const results: string[] = [];
 
             if (classification.intents.includes("search")) {
-                const propertyResult = 
-                    await tryPropertySearch(userId, query);
-                results.push(propertyResult);
+                const searchSegment = 
+                    classification.segments.find(segment => 
+                        segment.intents.includes("search")
+                    );
+                if (searchSegment) {
+                    const propertyResult = 
+                        await tryPropertySearch(
+                            userId, 
+                            searchSegment.query
+                        );
+                    
+                    results.push(propertyResult.message);
+
+                    if (!propertyResult.complete) {
+                        if (classification.intents.includes("recommendation")) {
+                            updateSession(userId, {
+                                pendingRecommendation: true
+                            });
+                            console.log(
+                                "PENDING RECOMMENDATION SET TO TRUE"
+                            );
+                        }
+                        
+                        return results.join("\n\n");
+                    }
+                }
             }
             if (classification.intents.includes("market")) {
                 const marketResult = 
@@ -87,13 +165,21 @@ export async function orchestrate(
             }
             if (classification.intents.includes("recommendation")) {
                 const session = getSession(userId);
-
+                
+                // If the search already finished, recommend immediately 
                 if (session.lastResults?.length) {
-                    const recommendationResult = await recommendationEngine(session.lastResults[0]);
+                    const recommendationResult = 
+                        await recommendationEngine(
+                            session.lastResults[0]
+                        );
 
                     results.push(recommendationResult);
                 } else {
-                    results.push("Please search for a property first so I can find similar listings.");
+                    updateSession(userId, {
+                        pendingRecommendation: true
+                    //results.push("Please search for a property first so I can find similar listings.");
+                    });
+                    console.log("PENDING RECOMMENDATION SET TO TRUE");
                 }
             }
             if (classification.intents.includes("knowledge")) {
@@ -106,11 +192,10 @@ export async function orchestrate(
 
         // case "uncategorized"
         default:
-            return {
-                response:
+            return (
                     "I'm not sure how to help with that. " +
                     "Try asking about properties, recommendations, " +
                     "market trends, or real estate concepts."
-            };
+            );
     }
 }
