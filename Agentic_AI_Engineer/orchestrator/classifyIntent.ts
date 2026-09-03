@@ -2,6 +2,7 @@ import { hasActiveConversation } from "../conversational_property/session.js";
 import dotenv from "dotenv";
 import mysql from "mysql2/promise";
 
+
 dotenv.config();
 
 export type Intent =
@@ -9,6 +10,7 @@ export type Intent =
     | "market"
     | "recommendation"
     | "knowledge"
+    | "email"
     | "mixed"
     | "uncategorized";
 
@@ -147,6 +149,10 @@ export class classifyIntent {
         )
     }
 
+    private looksLikeEmailRequest(text: string): boolean {
+        return /(email|e-mail|send.*email|send.*e-mail|gmail|g-mail)/i.test(text);
+    }
+
     private detectIntentsForSegment(text: string): Intent[] {
 
         const isSearch =
@@ -160,6 +166,9 @@ export class classifyIntent {
 
         const isKnowledge =
             this.looksLikeKnowledgeQuestion(text);
+
+        const isEmail = 
+            this.looksLikeEmailRequest(text);
 
         const detectedIntents: Intent[] = [];
 
@@ -177,6 +186,10 @@ export class classifyIntent {
 
         if (isKnowledge) {
             detectedIntents.push("knowledge");
+        }
+        
+        if (isEmail) {
+            detectedIntents.push("email");
         }
 
         return detectedIntents;

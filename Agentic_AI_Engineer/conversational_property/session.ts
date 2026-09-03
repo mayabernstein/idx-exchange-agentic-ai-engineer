@@ -21,8 +21,12 @@ export function getSession(userId: string): UserSession {
             view: null,
             maxHoa: null,
             conversationStep: 0,
-
-            pendingRecommendation: false // mixed intent
+            lastResults: undefined,
+            lastAgent: undefined,
+            lastIntent: undefined,
+            lastResponse: undefined,
+            pendingRecommendation: false, // mixed intent
+            pendingEmail: null // email intent
         });
     }
     return sessions.get(userId)!;

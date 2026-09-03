@@ -1,12 +1,15 @@
-import { tryPropertySearch } from "./property-search";
-import { tryMarketAnalytics } from "./market-analytics";
-import { recommendationEngine } from "./recommendation_agent";
-import { tryRealEstateRAG } from "./real-estate-rag";
+import { tryPropertySearch } from "../mls_engine/skills/property-search";
+import { tryMarketAnalytics } from "../market_analytics/market-analytics";
+import { recommendationEngine } from "../recommendation_engine/recommendation_agent";
+import { tryRealEstateRAG } from "../rag/real-estate-rag";
 import { getSession, updateSession } from "../conversational_property/session";
 import { formatCombinedResponse } from "./format-combined-response";
 import { hasActiveConversation } from "../conversational_property/session";
 import { classifyIntent } from "./classifyIntent";
-
+import { looksLikeEmailRequest } from "../email/email_intent";
+import { emailAgent } from "../email/email_agent";
+import { approveEmail, sendApprovedEmail } from "../email/email";
+ 
 const classifier = new classifyIntent();
 await classifier.initialize();
 
@@ -16,6 +19,44 @@ export async function orchestrate(
     userId: string,
 ): Promise<string> {
     console.log("ORCHESTRATOR QUERY:", query);
+
+    const session = getSession(userId);
+
+    // Handle pending email approval first
+    if (session.pendingEmail) {
+        const answer = query.trim().toLowerCase();
+
+        if (answer == 'y') {
+            const emailDraft = {
+                draft: session.pendingEmail,
+                status: "pending_approval" as const
+            };
+
+            const approvedEmail = approveEmail(emailDraft, true);
+            const result = await sendApprovedEmail(approvedEmail);
+
+            updateSession(userId, {
+                pendingEmail: null
+            });
+
+            return result.message;
+        }
+        if (answer == 'n') {
+            const emailDraft = {
+                draft: session.pendingEmail,
+                status: "pending_approval" as const
+            };
+
+            const rejectedEmail = approveEmail(emailDraft, false);
+
+            updateSession(userId, {
+                pendingEmail: null
+            });
+
+            return "Okay, email was not sent.";
+        }
+        return "Please respond with 'y' to send the email or 'n' to cancel.";
+    }
 
     const activePropertyConversation = 
         hasActiveConversation(userId);
@@ -37,6 +78,11 @@ export async function orchestrate(
         if (!propertyResult.complete) {
             return propertyResult.message;
         }
+
+        updateSession(userId, {
+            lastAgent: "search",
+            lastResponse: propertyResult.message
+        });
 
         const session = getSession(userId);
 
@@ -64,6 +110,12 @@ export async function orchestrate(
         }
         return propertyResult.message;
     }
+
+    // Email detection
+    const emailRequested = looksLikeEmailRequest(query);
+
+    console.log("Email Requested:", emailRequested);
+
     // Classify query 
     const classification = 
         await classifier.classify(query, userId);
@@ -101,12 +153,27 @@ export async function orchestrate(
             // Call MLS/property search functionality
             const propertyResult = 
                 await tryPropertySearch(userId, query);
+
+            updateSession(userId, {
+                lastAgent: "search",
+                lastIntent: "search",
+                lastResponse: propertyResult.message
+            });
+
             return propertyResult.message; 
         }
         
         case "market":
             // Call market analytics functionality
-            return await tryMarketAnalytics(userId, query);
+            const marketResult = await tryMarketAnalytics(userId, query);
+           
+            updateSession(userId, {
+                lastAgent: "market",
+                lastIntent: "market",
+                lastResponse: marketResult
+            });
+
+            return marketResult;
 
         case "recommendation": 
             const session = getSession(userId);
@@ -116,16 +183,54 @@ export async function orchestrate(
                 return "Please search for a property first so I can find similar listings.";
             }
 
-            return await recommendationEngine(
-                session.lastResults[0]
-            )
+            const recommendationResult = await recommendationEngine(session.lastResults[0]);
+
+            updateSession(userId, {
+                lastAgent: "recommendation",
+                lastIntent: "recommendation",
+                lastResponse: recommendationResult
+            });
+
+            return recommendationResult;
 
         case "knowledge":
             // Call RAG system
-            return await tryRealEstateRAG(
-                userId,
-                query
+            const knowledgeResult = await tryRealEstateRAG(userId, query);
+
+            updateSession(userId, {
+                lastAgent: "knowledge",
+                lastIntent: "knowledge",
+                lastResponse: knowledgeResult
+            });
+
+            return knowledgeResult;
+
+        case "email": {
+            const session = getSession(userId);
+
+            if (!session.lastAgent) {
+                return "There is no previous result available to email. Please ask about a property, market, recommendation, or real estate topic first.";
+            }
+
+            // test search first
+            const emailDraft = emailAgent(
+                process.env.EMAIL_USER!,
+                session.lastAgent,
+                session.lastResponse ?? ""
             );
+
+            updateSession(userId, {
+                pendingEmail: emailDraft.draft
+            });
+
+            return (
+                `Email Draft:\n\n` +
+                `To: [hidden]\n` +
+                `Subject: ${emailDraft.draft.subject}\n\n` +
+                `${emailDraft.draft.body}\n\n` +
+                `Would you like me to send this email? (y/n)`
+            );
+        }
 
         case "mixed": {
             const results: string[] = [];

@@ -38,7 +38,17 @@ export interface UserSession {
 
     lastResults?: ConversationListing[];
 
+    lastAgent?: "search" | "market" | "recommendation" | "knowledge";
+    lastIntent?: string;
+    lastResponse?: string;
+
     conversationStep: number;
+    pendingRecommendation?: boolean | null;
+    pendingEmail?: {
+        to: string;
+        subject: string;
+        body: string;
+    } | null;
 }
 
 // For the multi-conversational piece
