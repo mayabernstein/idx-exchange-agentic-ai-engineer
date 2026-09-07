@@ -32,5 +32,5 @@ print(f"After remarks list: {memory_usage():.1f} MB")
 
 
 print("\nLoading FAISS index...")
-index = faiss.read_index("../data/processed/listing_index_full.faiss")
+index = faiss.read_index("../data/processed/listing_index_sample.faiss")
 print(f"After FAISS index: {memory_usage():.1f} MB")
