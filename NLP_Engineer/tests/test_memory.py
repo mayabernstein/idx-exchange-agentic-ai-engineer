@@ -20,25 +20,7 @@ print(f"After model: {memory_usage():.1f} MB")
 
 print("\nLoading CSV...")
 listings_df = pd.read_csv(
-    "../data/processed/cleaned_listing_full.csv",
-    usecols=[
-        "L_ListingID",
-        "L_Address",
-        "L_City",
-        "beds",
-        "baths",
-        "price",
-        "sqft",
-        "cleaned_remarks",
-        "L_Zip"
-    ],
-    dtype={
-        "beds": "float32",
-        "baths": "float32",
-        "price": "int32",
-        "sqft": "float32"
-    }
-)
+    "../data/processed/cleaned_listing_sample.csv")
 
 listings_df = listings_df.reset_index(drop=True)
 print(f"After CSV: {memory_usage():.1f} MB")

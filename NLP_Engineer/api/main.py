@@ -81,43 +81,11 @@ intent_classifier.train(
     X_train,
     y_train
 )
-
-# Saving memory to deploy on Render for free
-listings_df = pd.read_csv(
-    "data/processed/cleaned_listing_full.csv",
-    usecols=[
-        "L_ListingID",
-        "L_Address",
-        "L_City",
-        "beds",
-        "baths",
-        "price",
-        "sqft",
-        "cleaned_remarks",
-        "L_Zip"
-    ],
-    dtype={
-        "beds": "float32",
-        "baths": "float32",
-        "price": "int32",
-        "sqft": "float32"
-    }
-)
-
-listings_df = listings_df.reset_index(drop=True)
-
-remarks_list = listings_df["cleaned_remarks"].fillna("").tolist()
-
-semantic_searcher.load_index(
-    "data/processed/listing_index_full.faiss",
-    remarks_list
-)
-
-listings_df = listings_df.drop(columns=["cleaned_remarks"])
+listings_df = pd.read_csv("data/processed/cleaned_listing_sample.csv")
 listings_df = listings_df.reset_index(drop=True)
 remarks_list = listings_df["cleaned_remarks"].fillna("").tolist()
 semantic_searcher.load_index(
-    "data/processed/listing_index_full.faiss",
+    "data/processed/listing_index_sample.faiss",
     remarks_list
 )
 summarizer = ListingSummarizer(taxonomy_path) # summarization
@@ -307,7 +275,7 @@ async def semantic_search(request: Request, search_request: SearchRequest):
     print("PARSED QUERY:", parsed_query)
 
     # Apply structured filters
-    filtered_listings = listings_df
+    filtered_listings = listings_df.copy()
 
     if "bedrooms" in parsed_query:
         filtered_listings = filtered_listings[
@@ -455,7 +423,7 @@ async def semantic_search(request: Request, search_request: SearchRequest):
     for original_index, score in search_results:
         listing = listings_df.loc[original_index]
 
-        remark = semantic_searcher.listings[original_index]
+        remark = listing["cleaned_remarks"]
         summary = summarizer.extractive_summary(remark)
 
         compliance = compliance_checker.check_listing(remark)
@@ -469,7 +437,7 @@ async def semantic_search(request: Request, search_request: SearchRequest):
             "bathrooms": float(listing["baths"]),
             "price": float(listing["price"]),
             "sqft": float(listing["sqft"]),
-            "remark": remark,
+            "remark": listing["cleaned_remarks"],
             "summary": summary,
             "score": float(score),
             "compliance": compliance
