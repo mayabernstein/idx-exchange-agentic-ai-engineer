@@ -1,0 +1,830 @@
+{
+    "categories": [
+        "kitchen",
+        "flooring",
+        "outdoor",
+        "parking",
+        "housing_layout",
+        "housing_features",
+        "location",
+        "community_amenities"
+    ],
+    "terms": [
+        {
+            "id": 1,
+            "term": "primary suite",
+            "category": "housing_layout",
+            "frequency": 336
+        },
+        {
+            "id": 2,
+            "term": "natural light",
+            "category": "housing_features",
+            "frequency": 294
+        },
+        {
+            "id": 3,
+            "term": "living room",
+            "category": "housing_layout",
+            "frequency": 283
+        },
+        {
+            "id": 4,
+            "term": "living space",
+            "category": "housing_layout",
+            "frequency": 263
+        },
+        {
+            "id": 5,
+            "term": "floor plan",
+            "category": "housing_layout",
+            "frequency": 261
+        },
+        {
+            "id": 6,
+            "term": "stainless steel",
+            "category": "kitchen",
+            "frequency": 193
+        },
+        {
+            "id": 9,
+            "term": "shopping dining",
+            "category": "location",
+            "frequency": 171
+        },
+        {
+            "id": 10,
+            "term": "located near",
+            "category": "location",
+            "frequency": 159
+        },
+        {
+            "id": 11,
+            "term": "conveniently located",
+            "category": "location",
+            "frequency": 158
+        },
+        {
+            "id": 12,
+            "term": "home office",
+            "category": "housing_layout",
+            "frequency": 143
+        },
+        {
+            "id": 13,
+            "term": "pool spa",
+            "category": "outdoor",
+            "frequency": 143
+        },
+        {
+            "id": 14,
+            "term": "easy access",
+            "category": "location",
+            "frequency": 139
+        },
+        {
+            "id": 15,
+            "term": "family room",
+            "category": "housing_layout",
+            "frequency": 134
+        },
+        {
+            "id": 17,
+            "term": "laundry room",
+            "category": "housing_features",
+            "frequency": 130
+        },
+        {
+            "id": 18,
+            "term": "recessed lighting",
+            "category": "housing_features",
+            "frequency": 119
+        },
+        {
+            "id": 19,
+            "term": "quartz countertops",
+            "category": "kitchen",
+            "frequency": 117
+        },
+        {
+            "id": 20,
+            "term": "living spaces",
+            "category": "housing_layout",
+            "frequency": 113
+        },
+        {
+            "id": 21,
+            "term": "granite countertops",
+            "category": "kitchen",
+            "frequency": 103
+        },
+        {
+            "id": 22,
+            "term": "conveniently located near",
+            "category": "location",
+            "frequency": 103
+        },
+        {
+            "id": 25,
+            "term": "dining room",
+            "category": "housing_layout",
+            "frequency": 92
+        },
+        {
+            "id": 26,
+            "term": "main level",
+            "category": "housing_layout",
+            "frequency": 89
+        },
+        {
+            "id": 27,
+            "term": "ideally located",
+            "category": "location",
+            "frequency": 88
+        },
+        {
+            "id": 28,
+            "term": "attached garage",
+            "category": "parking",
+            "frequency": 85
+        },
+        {
+            "id": 29,
+            "term": "open floor",
+            "category": "housing_layout",
+            "frequency": 85
+        },
+        {
+            "id": 30,
+            "term": "vaulted ceilings",
+            "category": "housing_features",
+            "frequency": 84
+        },
+        {
+            "id": 31,
+            "term": "primary bedroom",
+            "category": "housing_layout",
+            "frequency": 84
+        },
+        {
+            "id": 32,
+            "term": "kitchen features",
+            "category": "kitchen",
+            "frequency": 83
+        },
+        {
+            "id": 33,
+            "term": "abundant natural light",
+            "category": "housing_features",
+            "frequency": 83
+        },
+        {
+            "id": 34,
+            "term": "open floor plan",
+            "category": "housing_layout",
+            "frequency": 83
+        },
+        {
+            "id": 36,
+            "term": "golf course",
+            "category": "location",
+            "frequency": 79
+        },
+        {
+            "id": 38,
+            "term": "mountain views",
+            "category": "location",
+            "frequency": 78
+        },
+        {
+            "id": 39,
+            "term": "private balcony",
+            "category": "outdoor",
+            "frequency": 75
+        },
+        {
+            "id": 40,
+            "term": "full bathroom",
+            "category": "housing_layout",
+            "frequency": 74
+        },
+        {
+            "id": 41,
+            "term": "flooring throughout",
+            "category": "flooring",
+            "frequency": 73
+        },
+        {
+            "id": 42,
+            "term": "tile flooring",
+            "category": "flooring",
+            "frequency": 72
+        },
+        {
+            "id": 43,
+            "term": "gated community",
+            "category": "community_amenities",
+            "frequency": 72
+        },
+        {
+            "id": 44,
+            "term": "covered patio",
+            "category": "outdoor",
+            "frequency": 70
+        },
+        {
+            "id": 46,
+            "term": "updated kitchen",
+            "category": "kitchen",
+            "frequency": 68
+        },
+        {
+            "id": 47,
+            "term": "direct access",
+            "category": "housing_features",
+            "frequency": 68
+        },
+        {
+            "id": 48,
+            "term": "additional bedrooms",
+            "category": "housing_layout",
+            "frequency": 65
+        },
+        {
+            "id": 50,
+            "term": "car garage",
+            "category": "parking",
+            "frequency": 63
+        },
+        {
+            "id": 51,
+            "term": "fitness center",
+            "category": "community_amenities",
+            "frequency": 62
+        },
+        {
+            "id": 52,
+            "term": "center island",
+            "category": "kitchen",
+            "frequency": 61
+        },
+        {
+            "id": 55,
+            "term": "full bath",
+            "category": "housing_layout",
+            "frequency": 58
+        },
+        {
+            "id": 56,
+            "term": "chef kitchen",
+            "category": "kitchen",
+            "frequency": 58
+        },
+        {
+            "id": 57,
+            "term": "hardwood floors",
+            "category": "flooring",
+            "frequency": 58
+        },
+        {
+            "id": 58,
+            "term": "convenient access",
+            "category": "location",
+            "frequency": 58
+        },
+        {
+            "id": 60,
+            "term": "outdoor space",
+            "category": "outdoor",
+            "frequency": 57
+        },
+        {
+            "id": 62,
+            "term": "freeway access",
+            "category": "housing_features",
+            "frequency": 55
+        },
+        {
+            "id": 63,
+            "term": "brand new",
+            "category": "housing_layout",
+            "frequency": 54
+        },
+        {
+            "id": 64,
+            "term": "panoramic views",
+            "category": "location",
+            "frequency": 53
+        },
+        {
+            "id": 65,
+            "term": "sliding glass",
+            "category": "housing_features",
+            "frequency": 52
+        },
+        {
+            "id": 66,
+            "term": "remodeled kitchen",
+            "category": "kitchen",
+            "frequency": 52
+        },
+        {
+            "id": 67,
+            "term": "cozy fireplace",
+            "category": "housing_features",
+            "frequency": 51
+        },
+        {
+            "id": 68,
+            "term": "prime location",
+            "category": "location",
+            "frequency": 50
+        },
+        {
+            "id": 69,
+            "term": "private backyard",
+            "category": "outdoor",
+            "frequency": 50
+        },
+        {
+            "id": 70,
+            "term": "detached garage",
+            "category": "parking",
+            "frequency": 48
+        },
+        {
+            "id": 71,
+            "term": "peace mind",
+            "category": "housing_features",
+            "frequency": 48
+        },
+        {
+            "id": 73,
+            "term": "solar panels",
+            "category": "housing_features",
+            "frequency": 48
+        },
+        {
+            "id": 74,
+            "term": "gourmet kitchen",
+            "category": "kitchen",
+            "frequency": 47
+        },
+        {
+            "id": 76,
+            "term": "filled natural light",
+            "category": "housing_features",
+            "frequency": 47
+        },
+        {
+            "id": 77,
+            "term": "located minutes",
+            "category": "location",
+            "frequency": 46
+        },
+        {
+            "id": 78,
+            "term": "near shopping",
+            "category": "location",
+            "frequency": 46
+        },
+        {
+            "id": 79,
+            "term": "countertops stainless",
+            "category": "kitchen",
+            "frequency": 46
+        },
+        {
+            "id": 82,
+            "term": "located within",
+            "category": "location",
+            "frequency": 44
+        },
+        {
+            "id": 83,
+            "term": "dining shopping",
+            "category": "location",
+            "frequency": 44
+        },
+        {
+            "id": 84,
+            "term": "tennis courts",
+            "category": "community_amenities",
+            "frequency": 44
+        },
+        {
+            "id": 85,
+            "term": "countertops stainless steel",
+            "category": "kitchen",
+            "frequency": 44
+        },
+        {
+            "id": 86,
+            "term": "high ceilings",
+            "category": "housing_features",
+            "frequency": 43
+        },
+        {
+            "id": 87,
+            "term": "sparkling pool",
+            "category": "outdoor",
+            "frequency": 43
+        },
+        {
+            "id": 89,
+            "term": "formal dining room",
+            "category": "housing_layout",
+            "frequency": 43
+        },
+        {
+            "id": 90,
+            "term": "private patio",
+            "category": "outdoor",
+            "frequency": 42
+        },
+        {
+            "id": 92,
+            "term": "added privacy",
+            "category": "housing_features",
+            "frequency": 42
+        },
+        {
+            "id": 94,
+            "term": "wood flooring",
+            "category": "flooring",
+            "frequency": 41
+        },
+        {
+            "id": 95,
+            "term": "laminate flooring",
+            "category": "flooring",
+            "frequency": 41
+        },
+        {
+            "id": 97,
+            "term": "glass doors",
+            "category": "housing_features",
+            "frequency": 40
+        },
+        {
+            "id": 98,
+            "term": "tankless water",
+            "category": "housing_features",
+            "frequency": 40
+        },
+        {
+            "id": 99,
+            "term": "secondary bedrooms",
+            "category": "housing_layout",
+            "frequency": 40
+        },
+        {
+            "id": 100,
+            "term": "schools shopping",
+            "category": "location",
+            "frequency": 40
+        },
+        {
+            "id": 101,
+            "term": "located near shopping",
+            "category": "location",
+            "frequency": 40
+        },
+        {
+            "id": 103,
+            "term": "dual sinks",
+            "category": "kitchen",
+            "frequency": 39
+        },
+        {
+            "id": 106,
+            "term": "breakfast bar",
+            "category": "kitchen",
+            "frequency": 38
+        },
+        {
+            "id": 108,
+            "term": "ideally located near",
+            "category": "location",
+            "frequency": 38
+        },
+        {
+            "id": 109,
+            "term": "tankless water heater",
+            "category": "housing_features",
+            "frequency": 38
+        },
+        {
+            "id": 112,
+            "term": "enjoy access",
+            "category": "housing_features",
+            "frequency": 37
+        },
+        {
+            "id": 113,
+            "term": "community pool",
+            "category": "community_amenities",
+            "frequency": 37
+        },
+        {
+            "id": 114,
+            "term": "parking space",
+            "category": "parking",
+            "frequency": 37
+        },
+        {
+            "id": 115,
+            "term": "fruit trees",
+            "category": "outdoor",
+            "frequency": 36
+        },
+        {
+            "id": 117,
+            "term": "guests home office",
+            "category": "housing_layout",
+            "frequency": 36
+        },
+        {
+            "id": 118,
+            "term": "full bathrooms",
+            "category": "housing_layout",
+            "frequency": 35
+        },
+        {
+            "id": 119,
+            "term": "mature landscaping",
+            "category": "outdoor",
+            "frequency": 35
+        },
+        {
+            "id": 121,
+            "term": "plank flooring",
+            "category": "flooring",
+            "frequency": 35
+        },
+        {
+            "id": 123,
+            "term": "hardwood flooring",
+            "category": "flooring",
+            "frequency": 34
+        },
+        {
+            "id": 127,
+            "term": "indoor laundry",
+            "category": "housing_features",
+            "frequency": 33
+        },
+        {
+            "id": 129,
+            "term": "effortless entertaining",
+            "category": "housing_features",
+            "frequency": 33
+        },
+        {
+            "id": 132,
+            "term": "fire pit",
+            "category": "outdoor",
+            "frequency": 31
+        },
+        {
+            "id": 133,
+            "term": "parks shopping",
+            "category": "location",
+            "frequency": 31
+        },
+        {
+            "id": 134,
+            "term": "ocean views",
+            "category": "location",
+            "frequency": 31
+        },
+        {
+            "id": 136,
+            "term": "parking spaces",
+            "category": "outdoor",
+            "frequency": 30
+        },
+        {
+            "id": 137,
+            "term": "second bedroom",
+            "category": "housing_layout",
+            "frequency": 30
+        },
+        {
+            "id": 139,
+            "term": "ev charging",
+            "category": "parking",
+            "frequency": 30
+        },
+        {
+            "id": 141,
+            "term": "shopping centers",
+            "category": "location",
+            "frequency": 30
+        },
+        {
+            "id": 142,
+            "term": "new roof",
+            "category": "housing_features",
+            "frequency": 30
+        },
+        {
+            "id": 144,
+            "term": "large center island",
+            "category": "kitchen",
+            "frequency": 30
+        },
+        {
+            "id": 145,
+            "term": "shopping restaurants",
+            "category": "location",
+            "frequency": 29
+        },
+        {
+            "id": 147,
+            "term": "outdoor kitchen",
+            "category": "kitchen",
+            "frequency": 29
+        },
+        {
+            "id": 149,
+            "term": "upper level",
+            "category": "flooring",
+            "frequency": 29
+        },
+        {
+            "id": 150,
+            "term": "patio perfect",
+            "category": "outdoor",
+            "frequency": 29
+        },
+        {
+            "id": 154,
+            "term": "laundry area",
+            "category": "housing_features",
+            "frequency": 28
+        },
+        {
+            "id": 155,
+            "term": "gas fireplace",
+            "category": "housing_features",
+            "frequency": 28
+        },
+        {
+            "id": 157,
+            "term": "near shopping dining",
+            "category": "location",
+            "frequency": 28
+        },
+        {
+            "id": 158,
+            "term": "generously sized bedrooms",
+            "category": "housing_layout",
+            "frequency": 28
+        },
+        {
+            "id": 159,
+            "term": "lower level",
+            "category": "flooring",
+            "frequency": 27
+        },
+        {
+            "id": 160,
+            "term": "bbq area",
+            "category": "housing_features",
+            "frequency": 27
+        },
+        {
+            "id": 163,
+            "term": "media room",
+            "category": "housing_layout",
+            "frequency": 27
+        },
+        {
+            "id": 164,
+            "term": "centrally located",
+            "category": "location",
+            "frequency": 27
+        },
+        {
+            "id": 165,
+            "term": "first floor",
+            "category": "flooring",
+            "frequency": 27
+        },
+        {
+            "id": 168,
+            "term": "wet bar",
+            "category": "kitchen",
+            "frequency": 27
+        },
+        {
+            "id": 169,
+            "term": "swimming pool",
+            "category": "outdoor",
+            "frequency": 27
+        },
+        {
+            "id": 170,
+            "term": "en suite",
+            "category": "housing_layout",
+            "frequency": 27
+        },
+        {
+            "id": 174,
+            "term": "shopping dining parks",
+            "category": "location",
+            "frequency": 27
+        },
+        {
+            "id": 175,
+            "term": "kitchen dining",
+            "category": "kitchen",
+            "frequency": 26
+        },
+        {
+            "id": 177,
+            "term": "fully remodeled",
+            "category": "housing_features",
+            "frequency": 26
+        },
+        {
+            "id": 179,
+            "term": "sliding glass doors",
+            "category": "housing_features",
+            "frequency": 26
+        },
+        {
+            "id": 181,
+            "term": "vinyl plank flooring",
+            "category": "flooring",
+            "frequency": 26
+        },
+        {
+            "id": 182,
+            "term": "mature trees",
+            "category": "outdoor",
+            "frequency": 25
+        },
+        {
+            "id": 183,
+            "term": "close shopping",
+            "category": "location",
+            "frequency": 25
+        },
+        {
+            "id": 185,
+            "term": "located heart",
+            "category": "location",
+            "frequency": 25
+        },
+        {
+            "id": 187,
+            "term": "new construction",
+            "category": "housing_features",
+            "frequency": 25
+        },
+        {
+            "id": 189,
+            "term": "dedicated laundry",
+            "category": "housing_features",
+            "frequency": 25
+        },
+        {
+            "id": 190,
+            "term": "spacious backyard",
+            "category": "outdoor",
+            "frequency": 25
+        },
+        {
+            "id": 191,
+            "term": "assigned parking",
+            "category": "housing_features",
+            "frequency": 25
+        },
+        {
+            "id": 194,
+            "term": "located desirable",
+            "category": "location",
+            "frequency": 24
+        },
+        {
+            "id": 195,
+            "term": "peaceful retreat",
+            "category": "housing_features",
+            "frequency": 24
+        },
+        {
+            "id": 198,
+            "term": "rv parking",
+            "category": "parking",
+            "frequency": 24
+        },
+        {
+            "id": 200,
+            "term": "downstairs bedroom",
+            "category": "housing_layout",
+            "frequency": 24
+        }
+    ]
+}
