@@ -82,7 +82,7 @@ intent_classifier.train(
     X_train,
     y_train
 )
-# listings_df = pd.read_csv("data/processed/cleaned_listing_full.csv")
+# listings_df = pd.read_csv("data/processed/cleaned_listing_sample.csv")
 # For FASTAPI deployment on Railway
 bucket = os.environ["BUCKET"]
 
