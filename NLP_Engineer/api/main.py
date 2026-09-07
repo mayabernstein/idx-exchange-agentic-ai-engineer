@@ -98,28 +98,28 @@ os.makedirs("/tmp/private_data", exist_ok=True)
 
 s3.download_file(
     bucket,
-    "private_data/cleaned_listing_full.csv",
-    "/tmp/private_data/cleaned_listing_full.csv",
+    "private_data/cleaned_listing_sample.csv",
+    "/tmp/private_data/cleaned_listing_sample.csv",
 )
 
 s3.download_file(
     bucket,
-    "private_data/listing_index_full.faiss",
-    "/tmp/private_data/listing_index_full.faiss",
+    "private_data/listing_index_sample.faiss",
+    "/tmp/private_data/listing_index_sample.faiss",
 )
 
-listings_df = pd.read_csv("/tmp/private_data/cleaned_listing_full.csv")
+listings_df = pd.read_csv("/tmp/private_data/cleaned_listing_sample.csv")
 
 remarks_list = listings_df["cleaned_remarks"].fillna("").tolist()
 
 ''' semantic_searcher.load_index(
-    "data/processed/listing_index_full.faiss",
+    "data/processed/listing_index_sample.faiss",
     remarks_list
 )'''
 
 # For FASTAPI deployment on Railway
 semantic_searcher.load_index(
-    "/tmp/private_data/listing_index_full.faiss",
+    "/tmp/private_data/listing_index_sample.faiss",
     remarks_list
 )
 

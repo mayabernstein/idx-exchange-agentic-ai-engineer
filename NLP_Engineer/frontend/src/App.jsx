@@ -61,7 +61,7 @@ function App() {
 
     try {
       // Parse the search query 
-      const parseResponse = await fetch("http://localhost:8000/parse-query", {
+      const parseResponse = await fetch(`${import.meta.env.VITE_API_URL}/parse-query`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +72,7 @@ function App() {
       const parsedData = await parseResponse.json();
 
       // Perform the NLP search
-      const response = await fetch("http://localhost:8000/search", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/search`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -103,7 +103,7 @@ function App() {
 
   const loadMetrics = async () => {
     try {
-      const response = await fetch("http://localhost:8000/metrics");
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/metrics`);
       const data = await response.json();
 
       setMetrics(data);
@@ -120,7 +120,7 @@ function App() {
       setFeedback(null);
 
       try {
-        await fetch("http://localhost:8000/feedback", {
+        await fetch(`${import.meta.env.VITE_API_URL}/feedback`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -141,7 +141,7 @@ function App() {
     setFeedback(rating);
 
     try {
-      await fetch("http://localhost:8000/feedback", {
+      await fetch(`${import.meta.env.VITE_API_URL}/feedback`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
