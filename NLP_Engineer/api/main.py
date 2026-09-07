@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 import os
+import boto3
 import sys
 import time
 import json
@@ -83,7 +84,31 @@ intent_classifier.train(
 )
 # listings_df = pd.read_csv("data/processed/cleaned_listing_full.csv")
 # For FASTAPI deployment on Railway
-listings_df = pd.read_csv("/app/private_data/cleaned_listing_full.csv")
+bucket = os.environ["BUCKET"]
+
+s3 = boto3.client(
+    "s3",
+    endpoint_url=os.environ["ENDPOINT"],
+    aws_access_key_id=os.environ["ACCESS_KEY_ID"],
+    aws_secret_access_key=os.environ["SECRET_ACCESS_KEY"],
+    region_name=os.environ.get("REGION", "auto"),
+)
+
+os.makedirs("/tmp/private_data", exist_ok=True)
+
+s3.download_file(
+    bucket,
+    "private_data/cleaned_listing_full.csv",
+    "/tmp/private_data/cleaned_listing_full.csv",
+)
+
+s3.download_file(
+    bucket,
+    "private_data/listing_index_full.faiss",
+    "/tmp/private_data/listing_index_full.faiss",
+)
+
+listings_df = pd.read_csv("/tmp/private_data/cleaned_listing_full.csv")
 
 remarks_list = listings_df["cleaned_remarks"].fillna("").tolist()
 
@@ -91,11 +116,13 @@ remarks_list = listings_df["cleaned_remarks"].fillna("").tolist()
     "data/processed/listing_index_full.faiss",
     remarks_list
 )'''
+
 # For FASTAPI deployment on Railway
 semantic_searcher.load_index(
-    "/app/private_data/listing_index_full.faiss",
+    "/tmp/private_data/listing_index_full.faiss",
     remarks_list
 )
+
 listings_df = listings_df.reset_index(drop=True)
 
 summarizer = ListingSummarizer(taxonomy_path) # summarization
