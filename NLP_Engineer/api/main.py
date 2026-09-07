@@ -81,13 +81,23 @@ intent_classifier.train(
     X_train,
     y_train
 )
-listings_df = pd.read_csv("data/processed/cleaned_listing_full.csv")
-listings_df = listings_df.reset_index(drop=True)
+# listings_df = pd.read_csv("data/processed/cleaned_listing_full.csv")
+# For FASTAPI deployment on Railway
+listings_df = pd.read_csv("/app/private_data/cleaned_listing_full.csv")
+
 remarks_list = listings_df["cleaned_remarks"].fillna("").tolist()
-semantic_searcher.load_index(
+
+''' semantic_searcher.load_index(
     "data/processed/listing_index_full.faiss",
     remarks_list
+)'''
+# For FASTAPI deployment on Railway
+semantic_searcher.load_index(
+    "/app/private_data/listing_index_full.faiss",
+    remarks_list
 )
+listings_df = listings_df.reset_index(drop=True)
+
 summarizer = ListingSummarizer(taxonomy_path) # summarization
 compliance_checker = ComplianceChecker() # compliance checker
 
