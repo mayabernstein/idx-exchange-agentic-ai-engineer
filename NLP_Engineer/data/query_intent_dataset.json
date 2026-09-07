@@ -1,0 +1,906 @@
+[
+  {
+    "query": "homes for sale in Santa Monica with ocean views",
+    "intent": "browsing"
+  },
+  {
+    "query": "affordable luxury homes in Denver",
+    "intent": "browsing"
+  },
+  {
+    "query": "new construction homes in Phoenix under $600k",
+    "intent": "browsing"
+  },
+  {
+    "query": "best neighborhoods to live in Sacramento for families",
+    "intent": "browsing"
+  },
+  {
+    "query": "rental properties in Seattle with private parking",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes with views in San Francisco",
+    "intent": "browsing"
+  },
+  {
+    "query": "luxury homes over $2 million in Los Angeles",
+    "intent": "browsing"
+  },
+  {
+    "query": "new construction homes in Denver",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes with outdoor kitchens in Orange County",
+    "intent": "browsing"
+  },
+  {
+    "query": "affordable homes under $500k in Phoenix",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes for sale by price range in San Diego with 3 bedrooms and 2 bathrooms",
+    "intent": "browsing"
+  },
+  {
+    "query": "show me all the neighborhoods in Orange County with good schools",
+    "intent": "researching"
+  },
+  {
+    "query": "luxury homes in Beverly Hills with a pool and views of the city",
+    "intent": "browsing"
+  },
+  {
+    "query": "find the best area to live in Irvine for families with young kids",
+    "intent": "researching"
+  },
+  {
+    "query": "homes for sale in Los Angeles County under $2 million with a yard and garage",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes with 3 bedrooms and 2 bathrooms in Santa Ana",
+    "intent": "browsing"
+  },
+  {
+    "query": "show me the best neighborhoods for families in San Jose",
+    "intent": "researching"
+  },
+  {
+    "query": "luxury homes in Newport Beach with ocean views",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes built before 2010 in Orange County",
+    "intent": "browsing"
+  },
+  {
+    "query": "best places to live in Irvine for young professionals",
+    "intent": "researching"
+  },
+  {
+    "query": "homes for sale near the beach in San Diego County",
+    "intent": "browsing"
+  },
+  {
+    "query": "what's the average cost of a single-family home in Irvine?",
+    "intent": "researching"
+  },
+  {
+    "query": "find luxury homes with private outdoor spaces in Beverly Hills",
+    "intent": "browsing"
+  },
+  {
+    "query": "show me all new listings in Orange County under $1.1 million",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes with views of the ocean in Huntington Beach and Newport Beach",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes for sale by neighborhood in Sacramento",
+    "intent": "browsing"
+  },
+  {
+    "query": "luxury apartments in San Francisco with views of the bay",
+    "intent": "browsing"
+  },
+  {
+    "query": "houses in Austin with yards and a pool under $500k",
+    "intent": "browsing"
+  },
+  {
+    "query": "best suburbs to live in Denver with good schools",
+    "intent": "researching"
+  },
+  {
+    "query": "new developments in Portland with outdoor spaces",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes for sale in San Diego with 3 bedrooms",
+    "intent": "browsing"
+  },
+  {
+    "query": "what neighborhoods have new construction homes in Orange County?",
+    "intent": "researching"
+  },
+  {
+    "query": "luxury condos available in Downtown LA under $1.5 million",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes with a view of the ocean in Huntington Beach CA",
+    "intent": "browsing"
+  },
+  {
+    "query": "show me homes in Sacramento with a pool and yard over 500 sqft",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes for sale in Tustin, CA with yard",
+    "intent": "browsing"
+  },
+  {
+    "query": "luxury apartments in downtown San Jose under $3000/month",
+    "intent": "browsing"
+  },
+  {
+    "query": "minnesota homes with lake views over 2500 sqft",
+    "intent": "browsing"
+  },
+  {
+    "query": "affordable neighborhoods in Denver CO",
+    "intent": "browsing"
+  },
+  {
+    "query": "small towns near Los Angeles with good schools",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes for sale in San Francisco with modern kitchens and large backyards",
+    "intent": "browsing"
+  },
+  {
+    "query": "affordable luxury homes in Los Angeles with ocean views",
+    "intent": "browsing"
+  },
+  {
+    "query": "new construction homes in Orange County with master suites over 1,000 sqft",
+    "intent": "browsing"
+  },
+  {
+    "query": "condo rentals in San Diego by the beach with balconies",
+    "intent": "browsing"
+  },
+  {
+    "query": "rural properties for sale in Santa Barbara County with vineyard views",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes for sale in Santa Monica this weekend",
+    "intent": "browsing"
+  },
+  {
+    "query": "min price for a 3 bedroom house in Seattle with a yard",
+    "intent": "researching"
+  },
+  {
+    "query": "new homes built within the last year in Denver with a mountain view",
+    "intent": "browsing"
+  },
+  {
+    "query": "list of neighborhoods in San Francisco with a walk score over 80",
+    "intent": "researching"
+  },
+  {
+    "query": "homes for rent in the East Village neighborhood of Brooklyn with a doorman",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes for sale in San Francisco with over 2 bedrooms",
+    "intent": "browsing"
+  },
+  {
+    "query": "what are the average commute times in Orange County",
+    "intent": "researching"
+  },
+  {
+    "query": "show me homes in Los Angeles that are within walking distance to beaches",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes with views of the ocean in San Diego",
+    "intent": "browsing"
+  },
+  {
+    "query": "what is the typical square footage of modern condos in San Jose",
+    "intent": "researching"
+  },
+  {
+    "query": "homes for sale in Santa Barbara with ocean views",
+    "intent": "browsing"
+  },
+  {
+    "query": "luxury apartments in downtown Los Angeles under $500k",
+    "intent": "browsing"
+  },
+  {
+    "query": "areas to live in San Francisco with good schools and low crime rates",
+    "intent": "researching"
+  },
+  {
+    "query": "new construction homes in the San Fernando Valley area",
+    "intent": "browsing"
+  },
+  {
+    "query": "best neighborhoods for families in Orange County",
+    "intent": "researching"
+  },
+  {
+    "query": "show me homes for sale in San Diego with a view",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes in Irvine with at least 3 bedrooms",
+    "intent": "browsing"
+  },
+  {
+    "query": "search homes in Beverly Hills with a price range of $1-2 million",
+    "intent": "browsing"
+  },
+  {
+    "query": "show me neighborhoods in San Diego with good schools and low crime rates",
+    "intent": "researching"
+  },
+  {
+    "query": "homes in the coastal area of Orange County for rent with ocean views",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes for sale in Pacific Beach with yard and pool",
+    "intent": "browsing"
+  },
+  {
+    "query": "luxury condos in downtown Los Angeles over $2 million",
+    "intent": "browsing"
+  },
+  {
+    "query": "neighborhoods in San Jose with good schools",
+    "intent": "researching"
+  },
+  {
+    "query": "homes with 3 bedrooms and a backyard in Laguna Beach",
+    "intent": "browsing"
+  },
+  {
+    "query": "explore real estate options for first-time homebuyers in Santa Barbara",
+    "intent": "researching"
+  },
+  {
+    "query": "homes for sale in San Francisco neighborhoods",
+    "intent": "browsing"
+  },
+  {
+    "query": "properties with ocean views in Santa Monica",
+    "intent": "browsing"
+  },
+  {
+    "query": "explore homes in the downtown Los Angeles area",
+    "intent": "browsing"
+  },
+  {
+    "query": "affordable luxury homes in Pasadena",
+    "intent": "browsing"
+  },
+  {
+    "query": "suburban neighborhoods with good schools in Orange County",
+    "intent": "researching"
+  },
+  {
+    "query": "What is the average price per square foot for condos in San Diego?",
+    "intent": "researching"
+  },
+  {
+    "query": "Areas in Irvine with low property taxes and good schools",
+    "intent": "researching"
+  },
+  {
+    "query": "How does the median home price in Anaheim compare to surrounding cities like Irvine and Santa Ana?",
+    "intent": "researching"
+  },
+  {
+    "query": "What are the current tax laws affecting homeowners in San Diego County?",
+    "intent": "researching"
+  },
+  {
+    "query": "What is the typical increase in property values during a housing market boom in Orange County?",
+    "intent": "researching"
+  },
+  {
+    "query": "What is the average commute time from downtown San Diego to its surrounding neighborhoods?",
+    "intent": "researching"
+  },
+  {
+    "query": "How does the median home price in Irvine compare with nearby cities like Anaheim and Orange?",
+    "intent": "researching"
+  },
+  {
+    "query": "What are the top 3 factors that affect property taxes in San Diego County?",
+    "intent": "researching"
+  },
+  {
+    "query": "Are there any areas in Irvine where I can buy a new home for under $700,000 with a mortgage payment of less than $2,500 per month?",
+    "intent": "researching"
+  },
+  {
+    "query": "What is the historical trend of housing prices in the Laguna Niguel area over the past 5 years?",
+    "intent": "researching"
+  },
+  {
+    "query": "average home price by neighborhood in San Diego",
+    "intent": "researching"
+  },
+  {
+    "query": "property tax rates in Orange County vs. Riverside County",
+    "intent": "researching"
+  },
+  {
+    "query": "historical data on Irvine real estate market trends",
+    "intent": "researching"
+  },
+  {
+    "query": "comparing home prices of new construction versus resale homes in San Diego",
+    "intent": "researching"
+  },
+  {
+    "query": "incentives and tax benefits for first-time homebuyers in California",
+    "intent": "researching"
+  },
+  {
+    "query": "What are the average property taxes in San Diego's 92101 zip code?",
+    "intent": "researching"
+  },
+  {
+    "query": "How does the median home price in Orange County compare to Los Angeles County?",
+    "intent": "researching"
+  },
+  {
+    "query": "Are there any neighborhoods in Irvine with new developments and a mix of old and new homes?",
+    "intent": "researching"
+  },
+  {
+    "query": "What are the benefits and drawbacks of owning a condo versus a single-family home in San Diego?",
+    "intent": "researching"
+  },
+  {
+    "query": "Can you provide information on the top 5 most expensive neighborhoods in Orange County?",
+    "intent": "researching"
+  },
+  {
+    "query": "What are the average property taxes in Orange County compared to Los Angeles County?",
+    "intent": "researching"
+  },
+  {
+    "query": "How does the home price increase rate differ between San Diego and nearby cities like Chula Vista or Escondido?",
+    "intent": "researching"
+  },
+  {
+    "query": "Can you provide a list of cities in California with below average median home prices under $600k, along with their population sizes and crime rates?",
+    "intent": "researching"
+  },
+  {
+    "query": "What is the approximate cost per square foot for modern luxury homes in Beverly Hills versus neighboring communities like Bel Air or Brentwood?",
+    "intent": "researching"
+  },
+  {
+    "query": "How do property values in Irvine change over a 5-year period, taking into account factors such as new developments and school districts?",
+    "intent": "researching"
+  },
+  {
+    "query": "average cost per square foot in San Diego's coastal neighborhoods",
+    "intent": "researching"
+  },
+  {
+    "query": "how many days is the Irvine housing market typically slow?",
+    "intent": "researching"
+  },
+  {
+    "query": "highest return on investment areas for rentals in Los Angeles County",
+    "intent": "researching"
+  },
+  {
+    "query": "what are the tax benefits of buying a home in the San Fernando Valley area?",
+    "intent": "researching"
+  },
+  {
+    "query": "which neighborhood in Orange County has seen the most rapid gentrification over the past decade",
+    "intent": "researching"
+  },
+  {
+    "query": "What are the neighborhoods with highest population growth in San Diego?",
+    "intent": "researching"
+  },
+  {
+    "query": "How does the cost of living compare between Irvine and Costa Mesa?",
+    "intent": "researching"
+  },
+  {
+    "query": "Areas in Orange County with low median property tax rates",
+    "intent": "researching"
+  },
+  {
+    "query": "What is the average home price per square foot in North San Diego County?",
+    "intent": "researching"
+  },
+  {
+    "query": "How does the job market in Irvine compare to Santa Ana?",
+    "intent": "researching"
+  },
+  {
+    "query": "What are the average property taxes per year in San Diego County?",
+    "intent": "researching"
+  },
+  {
+    "query": "How does the housing market in Irvine compare to the surrounding areas of Anaheim and Santa Ana?",
+    "intent": "researching"
+  },
+  {
+    "query": "What are some neighborhoods in San Diego with a high concentration of tech companies and startups?",
+    "intent": "researching"
+  },
+  {
+    "query": "Can you provide an overview of the current trends in new construction homes in Orange County?",
+    "intent": "researching"
+  },
+  {
+    "query": "How does the interest rate impact home prices in coastal areas of Southern California?",
+    "intent": "researching"
+  },
+  {
+    "query": "What is the average commute time to job centers from neighborhoods in San Diego?",
+    "intent": "researching"
+  },
+  {
+    "query": "How does the cost of living compare between Irvine and nearby cities like Anaheim?",
+    "intent": "researching"
+  },
+  {
+    "query": "What are the current market trends for condo sales in Downtown Los Angeles?",
+    "intent": "researching"
+  },
+  {
+    "query": "Are there any specific schools or school districts in San Diego that are highly rated by parents?",
+    "intent": "researching"
+  },
+  {
+    "query": "Can you provide a breakdown of property taxes in Orange County compared to Los Angeles County?",
+    "intent": "researching"
+  },
+  {
+    "query": "What is the average commute time from downtown San Diego to surrounding neighborhoods?",
+    "intent": "researching"
+  },
+  {
+    "query": "How do property values in Irvine compare to those in nearby cities like Anaheim and Costa Mesa?",
+    "intent": "researching"
+  },
+  {
+    "query": "What are the top factors that affect property tax rates in San Diego County?",
+    "intent": "researching"
+  },
+  {
+    "query": "Can you provide a breakdown of the average cost per square foot for different types of homes in Irvine?",
+    "intent": "researching"
+  },
+  {
+    "query": "What are the pros and cons of renting vs buying a home in the San Diego area compared to other cities like LA and Orange County?",
+    "intent": "researching"
+  },
+  {
+    "query": "average property tax rates in San Diego neighborhoods?",
+    "intent": "researching"
+  },
+  {
+    "query": "what is the average price per square foot for homes in Irvine compared to Anaheim?",
+    "intent": "researching"
+  },
+  {
+    "query": "areas with low cost of living in Orange County, CA?",
+    "intent": "researching"
+  },
+  {
+    "query": "new construction homes in Laguna Niguel with modern designs?",
+    "intent": "browsing"
+  },
+  {
+    "query": "why are home prices in San Diego increasing so rapidly?",
+    "intent": "researching"
+  },
+  {
+    "query": "How does the median home price in Irvine compare to the average cost of living?",
+    "intent": "researching"
+  },
+  {
+    "query": "What are some neighborhoods in San Diego with affordable housing options under $600k?",
+    "intent": "researching"
+  },
+  {
+    "query": "How does property tax rate vary by school district in Orange County?",
+    "intent": "researching"
+  },
+  {
+    "query": "Can anyone get a mortgage for a fixer-upper in Irvine with bad credit?",
+    "intent": "researching"
+  },
+  {
+    "query": "What is the average commute time to job centers from different neighborhoods in San Diego?",
+    "intent": "researching"
+  },
+  {
+    "query": "What is the average home price per square foot in San Diego?",
+    "intent": "researching"
+  },
+  {
+    "query": "Areas in Anaheim with low property taxes",
+    "intent": "researching"
+  },
+  {
+    "query": "How does the Irvine real estate market compare to Los Angeles?",
+    "intent": "researching"
+  },
+  {
+    "query": "What is the average rent for a 3-bedroom apartment in Orange County?",
+    "intent": "researching"
+  },
+  {
+    "query": "Are there any affordable neighborhoods in San Diego with good schools?",
+    "intent": "researching"
+  },
+  {
+    "query": "San Diego neighborhoods with high median incomes",
+    "intent": "researching"
+  },
+  {
+    "query": "Comparison of property taxes in Orange and Riverside counties",
+    "intent": "researching"
+  },
+  {
+    "query": "How does the Irvine housing market perform during economic downturns?",
+    "intent": "researching"
+  },
+  {
+    "query": "Average home price per square foot in Los Angeles County vs San Diego County",
+    "intent": "researching"
+  },
+  {
+    "query": "Best areas to invest in real estate with high growth potential in the Inland Empire",
+    "intent": "researching"
+  },
+  {
+    "query": "what is the median home price in Santa Ana compared to Anaheim?",
+    "intent": "researching"
+  },
+  {
+    "query": "top rated school districts for families with kids in San Ramon",
+    "intent": "researching"
+  },
+  {
+    "query": "average rent prices for 3 bedroom apartments in Los Angeles",
+    "intent": "researching"
+  },
+  {
+    "query": "what is the average commute time from Downtown LA to Long Beach?",
+    "intent": "researching"
+  },
+  {
+    "query": "which neighborhoods have seen significant gentrification in San Jose recently",
+    "intent": "researching"
+  },
+  {
+    "query": "move-in ready homes in San Diego under $1.2 million with a view",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes available for sale this weekend in Irvine with pool and yard",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "newest construction homes in Santa Ana under $850k with 3 bedrooms",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes available for immediate occupancy in Orange County with a minimum of 3 bathrooms",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "best neighborhoods to live in Irvine for families with school districts",
+    "intent": "researching"
+  },
+  {
+    "query": "move-in ready homes in San Diego under $1.2 million",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "new listings in Irvine over $500k with seller financing this weekend",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes available for showings in Orange County under $700k with a minimum of 3 bedrooms",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "best neighborhoods for families in San Diego with good schools and low crime rates",
+    "intent": "researching"
+  },
+  {
+    "query": "open houses this weekend in Los Angeles area with luxury homes over $2 million",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "move-in ready homes in Los Angeles under $1.5 million",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "new listings this weekend in San Jose with open houses and asking prices over $800k",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes available for sale by owner in Denver under $600k with reasonable closing costs",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "explore neighborhoods with average rent below $2,000 per month in Austin with walkability and easy access to public transport",
+    "intent": "researching"
+  },
+  {
+    "query": "looking for homes in the Phoenix area under $1.0 million with 3 bedrooms, 2 bathrooms, and a pool on the backyard",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "new construction homes in San Diego with 4 bedrooms and a backyard",
+    "intent": "browsing"
+  },
+  {
+    "query": "move-in ready condos in Irvine under $800k",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes for sale this weekend in Orange County with 3 bedrooms and a pool",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "rental properties in Los Angeles with a view of the city",
+    "intent": "browsing"
+  },
+  {
+    "query": "new listings in Anaheim under $700k with seller financing and a yard",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "new construction homes in Irvine under $850k with 3 bedrooms and 2 bathrooms",
+    "intent": "browsing"
+  },
+  {
+    "query": "move-in ready luxury homes in Beverly Hills under $5 million with private views of the city",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes available for sale this weekend in Anaheim with open houses and no HOA fees",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "average price per square foot of homes sold in San Diego last quarter and their average closing prices",
+    "intent": "researching"
+  },
+  {
+    "query": "new listings in Irvine with seller financing and no inspections required for a home sale this month",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "move-in ready homes in San Diego under $1.2 million",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "new listings in Irvine available this weekend with open houses",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes for sale in Tustin CA with at least 3 bedrooms and a backyard over $800k",
+    "intent": "browsing"
+  },
+  {
+    "query": "What are the average rent prices for 2-bedroom apartments in Santa Ana this month?",
+    "intent": "researching"
+  },
+  {
+    "query": "homes under construction in Orange County CA with a projected completion date of Q2 2024",
+    "intent": "browsing"
+  },
+  {
+    "query": "new homes for sale in San Diego under $800k with close proximity to beaches",
+    "intent": "browsing"
+  },
+  {
+    "query": "move-in ready homes available this weekend in Irvine with a minimum of 3 bedrooms",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "new listings in Orange County under $900k with seller financing and short closing process",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes available for immediate move-in in Los Angeles County under $1.5 million with large backyards",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "properties coming up for sale by the end of March 2024 in San Gabriel Valley with 2-3 bedrooms and a minimum of 1,500 sqft",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "move-in ready homes in San Diego under $1.2 million",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes available this weekend with open houses in Irvine",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "new listings in Newport Beach under $800k with seller financing",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes for sale in Anaheim with a minimum of 3 bedrooms and 2 bathrooms",
+    "intent": "browsing"
+  },
+  {
+    "query": "available luxury homes in Beverly Hills with a minimum lot size of 1/4 acre",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes for sale this weekend in Irvine with pool and backyard",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "new construction homes under $800k in San Diego County",
+    "intent": "browsing"
+  },
+  {
+    "query": "luxury condos available for immediate move-in in Beverly Hills",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "minimum credit score required for mortgage in Orange County",
+    "intent": "researching"
+  },
+  {
+    "query": "quick sale homes in La Jolla with short closing period",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "new construction homes for sale in San Diego with ocean views under $2 million",
+    "intent": "browsing"
+  },
+  {
+    "query": "move-in ready luxury condos available this weekend in Beverly Hills",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "best neighborhoods for families in Irvine with good schools and low crime rates",
+    "intent": "researching"
+  },
+  {
+    "query": "luxury homes with private gyms and tennis courts available for sale under $1.5 million in Orange County",
+    "intent": "browsing"
+  },
+  {
+    "query": "what is the average price per square foot of new single-family homes in San Diego this quarter?",
+    "intent": "researching"
+  },
+  {
+    "query": "new condos for sale in Los Angeles under $700k with private parking",
+    "intent": "browsing"
+  },
+  {
+    "query": "move-in ready homes in San Francisco over 3 bedrooms and less than $2 million",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes available for rent in Seattle with a view of the space needle this weekend",
+    "intent": "browsing"
+  },
+  {
+    "query": "the cheapest houses to buy in Phoenix that are still under construction",
+    "intent": "researching"
+  },
+  {
+    "query": "show me homes in Denver with a yard over 5000 square feet and a minimum price of $1.2 million",
+    "intent": "browsing"
+  },
+  {
+    "query": "move-in ready homes in San Diego under $1.2 million",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "new listings in Irvine under $900k with seller financing this weekend",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes available for sale in San Diego with 4 bedrooms and 3 bathrooms over $2 million",
+    "intent": "browsing"
+  },
+  {
+    "query": "what are the average closing costs in Orange County California",
+    "intent": "researching"
+  },
+  {
+    "query": "show me luxury homes for sale in Beverly Hills with a view of the city skyline under $5 million",
+    "intent": "browsing"
+  },
+  {
+    "query": "move-in ready homes in San Diego under $1.2 million this weekend",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes available for sale by owner in Irvine with seller financing under $900k",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "new construction homes in Orange County with 3 bedrooms and 2 bathrooms under $1.5 million",
+    "intent": "browsing"
+  },
+  {
+    "query": "homes for sale in Anaheim with pool views of the Santa Ana Mountains under $1.2 million",
+    "intent": "browsing"
+  },
+  {
+    "query": "time-sensitive move-in ready homes in San Diego with 4 bedrooms and 3 bathrooms between $1.2m-$1.5m",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "new construction homes in Orange County under $1.05 million with 4 bedrooms and 3 bathrooms",
+    "intent": "browsing"
+  },
+  {
+    "query": "show me foreclosed homes for sale in San Francisco this weekend with open houses",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes available in the next two weeks in Los Angeles under $2.5 million with a view of the city",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "what is the price per square foot for newly built homes in Seattle?",
+    "intent": "researching"
+  },
+  {
+    "query": "find homes sold in the past 30 days in Denver under $850k with a backyard and pool",
+    "intent": "researching"
+  },
+  {
+    "query": "move-in ready homes for sale in San Diego under $1.5 million",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes available this weekend with open houses in Irvine, CA",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "homes with pools in Irvine",
+    "intent": "browsing"
+  },
+  {
+    "query": "new construction homes in Orange County under $950k with seller financing",
+    "intent": "high_intent_inquiry"
+  },
+  {
+    "query": "best neighborhoods to live in San Diego with good schools and low crime rates",
+    "intent": "researching"
+  },
+  {
+    "query": "homes for sale in Irvine, CA with a view of the ocean under $2.5 million",
+    "intent": "browsing"
+  }
+]
