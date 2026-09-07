@@ -81,11 +81,11 @@ intent_classifier.train(
     X_train,
     y_train
 )
-listings_df = pd.read_csv("data/processed/cleaned_listing_sample.csv")
+listings_df = pd.read_csv("data/processed/cleaned_listing_full.csv")
 listings_df = listings_df.reset_index(drop=True)
 remarks_list = listings_df["cleaned_remarks"].fillna("").tolist()
 semantic_searcher.load_index(
-    "data/processed/listing_index_sample.faiss",
+    "data/processed/listing_index_full.faiss",
     remarks_list
 )
 summarizer = ListingSummarizer(taxonomy_path) # summarization
