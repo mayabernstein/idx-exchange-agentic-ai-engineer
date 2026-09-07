@@ -82,7 +82,7 @@ intent_classifier.train(
     X_train,
     y_train
 )
-# listings_df = pd.read_csv("data/processed/cleaned_listing_sample.csv")
+# listings_df = pd.read_csv("data/processed/cleaned_listings_sample.csv")
 # For FASTAPI deployment on Railway
 bucket = os.environ["BUCKET"]
 
@@ -98,8 +98,8 @@ os.makedirs("/tmp/private_data", exist_ok=True)
 
 s3.download_file(
     bucket,
-    "private_data/cleaned_listing_sample.csv",
-    "/tmp/private_data/cleaned_listing_sample.csv",
+    "private_data/cleaned_listings_sample.csv",
+    "/tmp/private_data/cleaned_listings_sample.csv",
 )
 
 s3.download_file(
@@ -108,7 +108,7 @@ s3.download_file(
     "/tmp/private_data/listing_index_sample.faiss",
 )
 
-listings_df = pd.read_csv("/tmp/private_data/cleaned_listing_sample.csv")
+listings_df = pd.read_csv("/tmp/private_data/cleaned_listings_sample.csv")
 
 remarks_list = listings_df["cleaned_remarks"].fillna("").tolist()
 
