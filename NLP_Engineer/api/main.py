@@ -81,19 +81,7 @@ intent_classifier.train(
     X_train,
     y_train
 )
-listings_df = pd.read_csv("data/processed/cleaned_listing_sample.csv",
-    usecols=[
-        "L_ListingID",
-        "L_Address",
-        "L_City",
-        "beds",
-        "baths",
-        "price",
-        "sqft",
-        "cleaned_remarks",
-        "L_Zip"
-    ]
-)
+listings_df = pd.read_csv("data/processed/cleaned_listing_sample.csv")
 listings_df = listings_df.reset_index(drop=True)
 remarks_list = listings_df["cleaned_remarks"].fillna("").tolist()
 semantic_searcher.load_index(
