@@ -10,6 +10,7 @@ import {
   Legend,
   XAxis,
   YAxis,
+  Label,
   CartesianGrid,
   Tooltip,
   ResponsiveContainer
@@ -470,20 +471,21 @@ function App() {
                       <XAxis
                         dataKey="query"
                         label={{
-                          value: "Query",
+                          value: "Queries",
                           position: "insideBottom",
                           offset: -5
                         }}
                       />
 
-                      <YAxis
-                        label={{
-                          value: "Latency (seconds)",
-                          angle: -90,
-                          position: "insideLeft"
-                        }}
-                      />
-
+                      <YAxis>
+                        <Label 
+                          value="Latency (seconds)"
+                          angle={-90}
+                          position="insideLeft"
+                          dy={70}
+                        />
+                      </YAxis>
+                        
                       <Tooltip />
 
                       <Line
